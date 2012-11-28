@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:background = "#EFFBFE"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+  <TextView
+  android:text = "Your score:"
+  android:textSize ="20pt"
+  android:textColor ="#000099"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content">
+  </TextView>
+  <TextView
+  android:id ="@+id/result"
+  android:textSize ="20pt"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content">
+  </TextView>
+  <TextView
+  android:id ="@+id/pefect"
+  android:textSize ="20pt"
+  android:textColor ="#009900"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content">
+  </TextView>
+  <Button 
+    		android:id="@+id/main_menu" 
+
+    		android:layout_height="wrap_content" 
+    		android:layout_width="fill_parent"
+    		android:layout_gravity ="center_vertical" 
+    		android:text="Main menu">
+    		
+    		</Button>
+     <Button 
+    		android:id="@+id/new_game" 
+    		android:layout_height="wrap_content" 
+    		android:layout_width="fill_parent"
+    		android:layout_gravity ="center_vertical" 
+    		android:text="New Game">
+    		</Button>
+  
+</LinearLayout>

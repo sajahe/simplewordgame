@@ -1,0 +1,183 @@
+[{
+"infinitive": "avoir",
+"present indicative":{
+"je":"ais",
+"tu":"as",
+"il":"a",
+"nous":"avons",
+"vous":"avez",
+"ils":"ont"}
+
+},{
+"infinitive": "aller",
+"present indicative":{
+"je":"vais",
+"tu":"vas",
+"il":"va",
+"nous":"allons",
+"vous":"allez",
+"ils":"vont"}
+
+},{
+"infinitive": "boire",
+"present indicative":{
+"je":"bois",
+"tu":"bois",
+"il":"boit",
+"nous":"buvons",
+"vous":"buvez",
+"ils":"boivent"}
+
+},
+{
+"trunk": "conna",
+"infinitive": "ître",
+"present indicative":{
+"je":"is",
+"tu":"is",
+"il":"ît",
+"nous":"issons",
+"vous":"issez",
+"ils":"issent"}
+},
+{
+"trunk": "cour",
+"infinitive": "ir",
+"present indicative":{
+"je":"s",
+"tu":"s",
+"il":"t",
+"nous":"ons",
+"vous":"ez",
+"ils":"ent"}
+},
+{
+"infinitive": "devoir",
+"present indicative":{
+"je":"dois",
+"tu":"dois",
+"il":"doit",
+"nous":"devons",
+"vous":"devez",
+"ils":"doivent"}
+},
+{
+"trunk": "di",
+"infinitive": "re",
+"present indicative":{
+"je":"s",
+"tu":"s",
+"il":"t",
+"nous":"sons",
+"vous":"tes",
+"ils":"sent"}
+
+},
+{
+"infinitive": "être",
+"present indicative":{
+"je":"suis",
+"tu":"es",
+"il":"est",
+"nous":"sommes",
+"vous":"êtes",
+"ils":"sont"}
+
+},
+{
+"infinitive": "faire",
+"present indicative":{
+"je":"fais",
+"tu":"fais",
+"il":"fait",
+"nous":"faisons",
+"vous":"faites",
+"ils":"font"}
+
+},
+{
+"trunk": "li",
+"infinitive": "re",
+"present indicative":{
+"je":"s",
+"tu":"s",
+"il":"t",
+"nous":"sons",
+"vous":"sez",
+"ils":"sent"}
+
+},
+{
+"trunk": "par",
+"infinitive": "tir",
+"present indicative":{
+"je":"s",
+"tu":"s",
+"il":"t",
+"nous":"tons",
+"vous":"tez",
+"ils":"tent"}
+},
+{
+"infinitive": "pouvoir",
+"present indicative":{
+"je":"peux",
+"tu":"peux",
+"il":"peut",
+"nous":"pouvons",
+"vous":"pouvez",
+"ils":"peuvent"}
+},
+{
+"trunk": "pren",
+"infinitive": "dre",
+"present indicative":{
+"je":"ds",
+"tu":"ds",
+"il":"d",
+"nous":"ons",
+"vous":"ez",
+"ils":"nent"}
+},
+{
+"trunk": "sa",
+"infinitive": "voir",
+"present indicative":{
+"je":"is",
+"tu":"is",
+"il":"it",
+"nous":"vons",
+"vous":"vez",
+"ils":"vent"}
+},
+{
+"infinitive": "venir",
+"present indicative":{
+"je":"viens",
+"tu":"viens",
+"il":"vient",
+"nous":"venons",
+"vous":"venez",
+"ils":"viennent"}
+},
+{
+"trunk": "vo",
+"infinitive": "ir",
+"present indicative":{
+"je":"is",
+"tu":"is",
+"il":"it",
+"nous":"yons",
+"vous":"yez",
+"ils":"ient"}
+},
+{
+"infinitive": "vouloir",
+"present indicative":{
+"je":"veux",
+"tu":"veux",
+"il":"veut",
+"nous":"voulons",
+"vous":"voulez",
+"ils":"veulent"}
+}]

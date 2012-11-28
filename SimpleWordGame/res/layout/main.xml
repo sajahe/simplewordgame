@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    android:orientation="vertical"
+    android:background = "#EFFBFE"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+<LinearLayout 
+	android:id="@+id/bg"
+	android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+<TextView
+	android:id="@+id/Qno"
+	android:text = "left"
+		android:textColor = "#000099"
+	android:layout_gravity="left"  
+    android:layout_width="wrap_content" 
+    android:layout_height= "wrap_content" 
+    />
+<TextView
+	android:id="@+id/score"
+	android:text = "right"
+
+		android:textColor = "#000099" 
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:gravity="right"/>
+</LinearLayout>
+<TextView  
+	android:text="present indicative tense"
+		android:textColor = "#000099"
+	android:gravity="center_horizontal"
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    />    
+<TextView  
+	android:id="@+id/infinitive"
+		android:textColor = "#000099"
+	android:gravity="center_horizontal"
+	android:textSize ="17pt"
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    />    
+<LinearLayout 
+	android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp">
+    <TextView
+    	  android:id="@+id/pronoun"
+    	  android:gravity="center_horizontal"
+    	  android:textSize = "15pt"
+    	  	android:textColor = "#000099"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/edittext"
+        android:gravity="center_horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:imeOptions ="actionDone"
+        android:layout_marginLeft="5dp"/>
+    
+</LinearLayout> 
+<RelativeLayout
+	android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+<Button
+        android:id="@+id/ok"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/edittext"
+        android:layout_gravity="right" 
+        android:text="OK" 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content"/>
+<Button
+		android:id="@+id/next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/ok"
+        android:layout_alignTop="@id/ok"
+        android:text="Next" android:visibility="invisible"/>
+</RelativeLayout>        
+<TextView  
+	android:id="@+id/test"
+	android:gravity="center_horizontal"
+	android:textSize ="17pt"
+		android:textColor = "#000099"
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    />     
+</LinearLayout>
