@@ -16,7 +16,14 @@ import android.util.Log;
 import android.widget.AnalogClock;
 import android.widget.TextView;
 
-
+/**
+ * This activity is for presenting all conjugations of one verb. Right now there 
+ * are also test methods for testing speed of deserialization of XML and JSON these
+ * should moved to somewhere else at some point.
+ * 
+ * @author sampo
+ *
+ */
 public class VerbConjugations extends Activity{
 	private JSONHandler jsonh;
 	private final String[] testVerbs= {"avoir","aller","boire","connaître","courir","devoir","dire","être","faire","lire","partir","pouvoir","prendre","savoir","venir","voir","vouloir"};
@@ -41,6 +48,9 @@ public class VerbConjugations extends Activity{
 		  
 		  
 	}
+	/**
+	 * Testing method which measures the speed of deserialization
+	 */
 	private void testSpeed() {
 		long start =System.currentTimeMillis();
 		Log.i("Start verbs", (""+System.currentTimeMillis()));
@@ -54,6 +64,10 @@ public class VerbConjugations extends Activity{
 	private Context getThisContext(){
 		return context;
 	} 
+	/**
+	 * Creates VerbXML class instance from XML element and shows it
+	 * @param s = String of verb's infinitive to be conjugated 
+	 */
 	private void showXML(String s){
 		VerbsXML vXmls = XMLHandler.getVerbXML(this.getThisContext());
 		//VerbXML vXml = vXmls.getVerb().get(2);
@@ -66,6 +80,9 @@ public class VerbConjugations extends Activity{
 		  tv2.setText(vXml.getNous()+"\n"+vXml.getVous()+"\n"+vXml.getIls());
 		
 	}
+	/**
+	 * Creates JSONHandler Class which handles the JSONArray
+	 */
 	private void createJson(){
 		try {
 			  InputStream is = this.getAssets().open("verbs.json");
@@ -83,6 +100,11 @@ public class VerbConjugations extends Activity{
 		 // showJson(); 
 		
 	}
+	/**
+	 * Creates VerbJSON class instance from JSONHandler and shows its conjugations
+	 * 
+	 * @param s = String of verb's infinitive to be conjugated 
+	 */
 	private void showJson(String s){
 		
 		try {
