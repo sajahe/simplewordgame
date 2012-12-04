@@ -53,13 +53,18 @@ public class VerbConjugations extends Activity{
 	 */
 	private void testSpeed() {
 		long start =System.currentTimeMillis();
-		Log.i("Start verbs", (""+System.currentTimeMillis()));
-		createJson();
+		Log.i("Start verbs ", (""+System.currentTimeMillis()));
+		
+		//createJson();
+		//Log.i("JSON array created verbs ", (""+(System.currentTimeMillis()-start)));
 		for (int i = 0; i < testVerbs.length; i++) {
 			//showXML(testVerbs[i]);
-			showJson(testVerbs[i]);
+			Log.i("Before verb "+i+" ", (""+(System.currentTimeMillis()-start)));
+			//showJson(testVerbs[i]);
+			showXML(testVerbs[i]);
+			Log.i("After verb ", (""+(System.currentTimeMillis()-start)));
 		}
-		Log.i("En verbs", (""+(System.currentTimeMillis()-start)));
+		Log.i("End of verbs ", (""+(System.currentTimeMillis()-start)));
 	}
 	private Context getThisContext(){
 		return context;
@@ -72,6 +77,7 @@ public class VerbConjugations extends Activity{
 		VerbsXML vXmls = XMLHandler.getVerbXML(this.getThisContext());
 		//VerbXML vXml = vXmls.getVerb().get(2);
 		VerbXML vXml = vXmls.getVerbXML(s);
+		Log.i("XML verb", ("Verb: "+vXml.getInfintive()+" "+vXml.getJe()+" "+vXml.getTu()+" "+vXml.getIl()+" "+vXml.getNous()+" "+vXml.getVous()+" "+vXml.getIls()));
 		TextView tv3 = (TextView) findViewById(R.id.textView3);
 		  tv3.setText(vXml.getInfintive());
 		TextView tv = (TextView) findViewById(R.id.textView1);
@@ -109,7 +115,10 @@ public class VerbConjugations extends Activity{
 		
 		try {
 			//VerbJSON vjson = jsonh.parseVerbJSON(2);
+			
 			VerbJSON vjson = jsonh.parseVerbJSON(s);
+			
+			Log.i("En verbs", ("Verb: "+vjson.getInfintive()+" "+vjson.getJe()+" "+vjson.getTu()+" "+vjson.getIl()+" "+vjson.getNous()+" "+vjson.getVous()+" "+vjson.getIls()));
 			 TextView tv3 = (TextView) findViewById(R.id.textView3);
 			  tv3.setText(vjson.getInfintive());
 			TextView tv = (TextView) findViewById(R.id.textView1);

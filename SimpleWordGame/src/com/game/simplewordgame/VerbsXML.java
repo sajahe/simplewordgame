@@ -38,7 +38,7 @@ public class VerbsXML {
 	
 	public VerbXML getVerbXML(String infinitive){
 		for (VerbXML v : verb) {
-			if (v!=null && v.getTrunk().concat(v.getInfintive()).equals(infinitive)){
+			if (v!=null && v.getInfintive().equals(infinitive)){
 				return v;
 			}
 		}	

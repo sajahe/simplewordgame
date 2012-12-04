@@ -34,6 +34,8 @@ public class VerbXML{
 	private String infinitive;
 	
 	public String getInfintive() {
+		if(trunk != null){
+			return getTrunk().concat(infinitive);}
 		return infinitive;
 	}
 	
@@ -45,37 +47,37 @@ public class VerbXML{
 	}
 	
 	public String getJe() {
-		if(trunk == null){
+		if(trunk != null ){
 		return getTrunk().concat(conjugation.getJe());}
 		return conjugation.getJe();
 	}
 
 	public String getTu() {
-		if(trunk == null){
+		if(trunk != null){
 			return getTrunk().concat(conjugation.getTu());}
 		return conjugation.getTu();
 	}
 
 	public String getIl() {
-		if(trunk == null){
+		if(trunk != null){
 			return getTrunk().concat(conjugation.getIl());}
 		return conjugation.getIl();
 	}
 
 	public String getNous() {
-		if(trunk == null){
+		if(trunk != null){
 			return getTrunk().concat(conjugation.getNous());}
 		return conjugation.getNous();
 	}
 
 	public String getVous() {
-		if(trunk == null){
+		if(trunk != null){
 			return getTrunk().concat(conjugation.getVous());}
 		return conjugation.getVous();
 	}
 
 	public String getIls() {
-		if(trunk == null){
+		if(trunk != null){
 			return getTrunk().concat(conjugation.getIls());}
 		return conjugation.getIls();
 	}
