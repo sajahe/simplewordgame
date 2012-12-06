@@ -180,4 +180,14 @@
 "nous":"voulons",
 "vous":"voulez",
 "ils":"veulent"}
-}]
+}],
+{"trunks":{"jouer":"to play","parler":"to speak","écouter":"to listen"},
+"present indicative":{
+"je":"e",
+"tu":"es",
+"il":"e",
+"nous":"ons",
+"vous":"ez",
+"ils":"ent"}
+},
+}

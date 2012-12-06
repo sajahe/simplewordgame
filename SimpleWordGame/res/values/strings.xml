@@ -4,11 +4,22 @@
     <string name="app_name">French Verb Quiz</string>
     <string name="help">1. Grammatical tense of the conjugation&lt;br/>2. Infinitive of the conjugated verb&lt;br/>3. Grammatical person of the conjugation&lt;br/> 4. Correctly conjugated verb"</string>
     <string name="admob_id">a14b5f8130c17ef</string>
-    <string name="connaitre">connaître</string>
-    <string name="connaitre_je">connais</string>
-    <string name="connaitre_tu">connais</string>
-    <string name="connaitre_il">connaît</string>
-    <string name="connaitre_nous">connaissons</string>
-    <string name="connaitre_vous">connaissez</string>
-    <string name="connaitre_ils">connaissent</string>
+    <string-array name="pronouns">
+        <item >je</item>
+        <item >tu</item>
+        <item >il</item>
+        <item >elle</item>
+        <item >nous</item>
+        <item >ils</item>
+        <item >elles</item>
+    </string-array>
+    <string-array name="tenses">
+        <item >present</item>
+        <item >imperfect</item>
+        <item >passé composé</item>
+        <item >pluperfect</item>
+        <item >passive</item>
+        <item >future</item>
+        <item >conditional</item>
+    </string-array>   
 </resources>
