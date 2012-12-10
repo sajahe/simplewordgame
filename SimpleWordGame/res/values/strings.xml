@@ -4,6 +4,8 @@
     <string name="app_name">French Verb Quiz</string>
     <string name="help">1. Grammatical tense of the conjugation&lt;br/>2. Infinitive of the conjugated verb&lt;br/>3. Grammatical person of the conjugation&lt;br/> 4. Correctly conjugated verb"</string>
     <string name="admob_id">a14b5f8130c17ef</string>
+    <string name="correct">Correct!</string>
+    <string name="incorrect">Incorrect!</string>
     <string-array name="pronouns">
         <item >je</item>
         <item >tu</item>

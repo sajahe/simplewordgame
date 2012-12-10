@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.lang.reflect.ReflectPermission;
 import java.util.Random;
 
 import com.google.ads.AdRequest;
@@ -39,7 +40,9 @@ import android.widget.Toast;
  */
 public class SimpleWordGame extends Activity {
 	private Verb verb = new Verb();
+	private JSONHandler jsonHandler; 
 	private String response = "";
+	private QuestionVerb[] questions;
 	private File file = new File("/sdcard/devel/verbs.dat");
 	private int i = 0;
 	private Results result = new Results();
@@ -56,12 +59,9 @@ public class SimpleWordGame extends Activity {
 			// this is the code that I am surrounding in the try/catch block
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.main);
-
-			// Testi
 			
-		
-			// testi
-
+			createJson();
+			questions = jsonHandler.getQuestions();
 			// verb.testQuestion();
 			
 
@@ -153,7 +153,7 @@ public class SimpleWordGame extends Activity {
 		}
 		return rivi;
 	}
-
+	
 	/**
 	 * Gives a random number
 	 * 
@@ -334,6 +334,26 @@ public class SimpleWordGame extends Activity {
 		outState.putString("form", verb.getForm());
 
 	    super.onSaveInstanceState(outState);
+	}
+	/**
+	 * Creates JSONHandler Class which handles the JSONArray
+	 */
+	private void createJson(){
+		try {
+			  InputStream is = this.getAssets().open("verbs.json");
+			String s = JSONHandler.readInputStream(is);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		  try {
+			jsonHandler = new JSONHandler(JSONHandler.readInputStream(this.getAssets().open("verbs.json")));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 // showJson(); 
+		
 	}
 	
 }

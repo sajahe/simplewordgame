@@ -11,6 +11,7 @@ import java.io.Reader;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
+import java.util.Random;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,10 +21,12 @@ import org.json.JSONTokener;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.os.Environment;
+import android.util.FloatMath;
 
 
 
 public class JSONHandler {
+	private static Random rnd = new Random();
 	private JSONArray array;
 
 	public JSONHandler(String s) {
@@ -36,7 +39,27 @@ public class JSONHandler {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * This methos is for getting random Question from JSON 
+	 * @return
+	 * @throws JSONException
+	 */
+	public QuestionVerb parseRandomQuestion() throws JSONException{
+		int index =rnd.nextInt(array.length()-1);
+		JSONObject jObject = array.getJSONObject(index);
+		JSONObject jObjectConjugations =jObject.getJSONObject("present indicative");
+		String trunk;
+		String pronoun = getRandomPronoun();
+		if (!jObject.isNull("trunk")){
+			
+			trunk = jObject.getString("trunk");
+			
+			return new QuestionVerb(trunk.concat(jObject.getString("infinitive")), trunk.concat(jObjectConjugations.getString(pronoun)), pronoun);
+		}else{
+			return new QuestionVerb(jObject.getString("infinitive"), jObjectConjugations.getString(pronoun), pronoun);
+		}
+		
+	}
 	
 	public VerbJSON parseVerbJSON(String s) throws JSONException {
 		
@@ -155,6 +178,40 @@ public void parseStringIntoJSON(String string) throws JSONException{
 			
 		}
 		return text;
+	}
+	public QuestionVerb[] getQuestions() throws JSONException{
+		QuestionVerb[] qv = new QuestionVerb[10]; 
+		for (int i = 0; i < qv.length; i++) {
+			qv[i] = parseRandomQuestion();
+		}
+		return qv;
+	}
+	
+	private static String getRandomPronoun(){
+		
+		switch (rnd.nextInt(5)) {
+		case 0:
+			
+			return "je";
+case 1:
+			
+	return "tu";
+case 2:
+	
+	return "il";
+case 3:
+	
+	return "nous";
+case 4:
+	
+	return "vous";
+case 5:
+	
+	return "ils";
+
+		default:
+			return"";
+		}
 	}
 
 }
