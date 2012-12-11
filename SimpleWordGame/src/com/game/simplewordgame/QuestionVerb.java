@@ -2,29 +2,37 @@ package com.game.simplewordgame;
 
 public class QuestionVerb {
 	  
-	private CharSequence question;
-	private CharSequence answer;
-	private CharSequence pronoun;
+	private String question;
+	private String answer;
+	private String pronoun;
 	private boolean answered;
 	private boolean correct;
 	
-	
-	public QuestionVerb(CharSequence question, CharSequence answer,
-			CharSequence pronoun) {
+	/**
+	 * This class is for asking questions in the verb quiz.
+	 * @param question = the infinitive of the verb 
+	 * @param answer = correctly conjugated verb
+	 * @param pronoun = pronoun that indicates the personal tense of the conjugation 
+	 */
+	public QuestionVerb(String question, String answer,
+			String pronoun) {
 		super();
 		this.question = question;
 		this.answer = answer;
 		this.pronoun = pronoun;
 		answered = false;
 	}
-	public CharSequence getPronoun() {
+	public String getPronoun() {
 		return pronoun;
 	}
-	public CharSequence getQuestion() {
+	public String getQuestion() {
 		return question;
 	}
-	public CharSequence getAnswer() {
+	public String getAnswer() {
 		return answer;
+	}
+	public void setCorrect(boolean b){
+		correct = b;
 	}
 	
 

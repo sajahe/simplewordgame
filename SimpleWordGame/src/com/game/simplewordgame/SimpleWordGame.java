@@ -47,7 +47,7 @@ public class SimpleWordGame extends Activity {
 	private int i = 0;
 	private Results result = new Results();
 	private int correct = 0;
-	private int questionNo = 1;
+	private int questionNo = 0;
 
 	// private Verb verb = new Verb();
 	/** Called when the activity is first created. */
@@ -256,9 +256,9 @@ public class SimpleWordGame extends Activity {
 	 */
 	private void setQuestion() {
 		final TextView textview = (TextView) findViewById(R.id.pronoun);
-		textview.setText(verb.getPron());
+		textview.setText(questions[questionNo].getPronoun());
 		final TextView textview2 = (TextView) findViewById(R.id.infinitive);
-		textview2.setText(verb.getInfinitive());
+		textview2.setText(questions[questionNo].getQuestion());
 
 	}
 
@@ -269,7 +269,7 @@ public class SimpleWordGame extends Activity {
 	 */
 	private void isItRight(String teksti) {
 		Button next = (Button) findViewById(R.id.next);
-		if (teksti.equals(verb.getForm())) {
+		if (teksti.equals(questions[questionNo].getAnswer())) {
 			Toast.makeText(SimpleWordGame.this, "Correct!", Toast.LENGTH_SHORT)
 					.show();
 			next.setVisibility(Button.VISIBLE);
