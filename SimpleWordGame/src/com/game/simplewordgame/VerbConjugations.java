@@ -36,8 +36,9 @@ public class VerbConjugations extends Activity{
 		  context = this;
 		  
 		  
-		  testSpeed();
-		  //createJson();
+		  //testSpeed();
+		  createJson();
+		  showJson(conjugatedVerb);
 		  //showDefault();
 		// showXML();
 		  

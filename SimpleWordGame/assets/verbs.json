@@ -1,7 +1,8 @@
 [{
 "infinitive": "avoir",
+"translation":"to be, to have",
 "present indicative":{
-"je":"ais",
+"je":"ai",
 "tu":"as",
 "il":"a",
 "nous":"avons",
@@ -10,6 +11,7 @@
 
 },{
 "infinitive": "aller",
+"translation":"to go",
 "present indicative":{
 "je":"vais",
 "tu":"vas",
@@ -20,6 +22,7 @@
 
 },{
 "infinitive": "boire",
+"translation":"to drink",
 "present indicative":{
 "je":"bois",
 "tu":"bois",
@@ -32,6 +35,7 @@
 {
 "trunk": "conna",
 "infinitive": "ître",
+"translation":"to know",
 "present indicative":{
 "je":"is",
 "tu":"is",
@@ -43,6 +47,7 @@
 {
 "trunk": "cour",
 "infinitive": "ir",
+"translation":"to run",
 "present indicative":{
 "je":"s",
 "tu":"s",
@@ -53,6 +58,7 @@
 },
 {
 "infinitive": "devoir",
+"translation":"",
 "present indicative":{
 "je":"dois",
 "tu":"dois",
@@ -64,6 +70,7 @@
 {
 "trunk": "di",
 "infinitive": "re",
+"translation":"to tell",
 "present indicative":{
 "je":"s",
 "tu":"s",
@@ -75,6 +82,7 @@
 },
 {
 "infinitive": "être",
+"translation":"to be",
 "present indicative":{
 "je":"suis",
 "tu":"es",
@@ -86,6 +94,7 @@
 },
 {
 "infinitive": "faire",
+"translation":"to do",
 "present indicative":{
 "je":"fais",
 "tu":"fais",
@@ -98,6 +107,7 @@
 {
 "trunk": "li",
 "infinitive": "re",
+"translation":"to read",
 "present indicative":{
 "je":"s",
 "tu":"s",
@@ -110,6 +120,7 @@
 {
 "trunk": "par",
 "infinitive": "tir",
+"translation":"to leave",
 "present indicative":{
 "je":"s",
 "tu":"s",
@@ -120,6 +131,7 @@
 },
 {
 "infinitive": "pouvoir",
+"translation":"to can",
 "present indicative":{
 "je":"peux",
 "tu":"peux",
@@ -131,6 +143,7 @@
 {
 "trunk": "pren",
 "infinitive": "dre",
+"translation":"to take",
 "present indicative":{
 "je":"ds",
 "tu":"ds",
@@ -142,6 +155,7 @@
 {
 "trunk": "sa",
 "infinitive": "voir",
+"translation":"to know",
 "present indicative":{
 "je":"is",
 "tu":"is",
@@ -152,6 +166,7 @@
 },
 {
 "infinitive": "venir",
+"translation":"to come",
 "present indicative":{
 "je":"viens",
 "tu":"viens",
@@ -163,6 +178,7 @@
 {
 "trunk": "vo",
 "infinitive": "ir",
+"translation":"to see",
 "present indicative":{
 "je":"is",
 "tu":"is",
@@ -173,6 +189,7 @@
 },
 {
 "infinitive": "vouloir",
+"translation":"to want",
 "present indicative":{
 "je":"veux",
 "tu":"veux",
@@ -181,7 +198,7 @@
 "vous":"voulez",
 "ils":"veulent"}
 }],
-{"trunks":{"jouer":"to play","parler":"to speak","écouter":"to listen"},
+{"trunks":{"jouer":"to play","parler":"to speak","écouter":"to listen","retourner":"to return"},
 "present indicative":{
 "je":"e",
 "tu":"es",

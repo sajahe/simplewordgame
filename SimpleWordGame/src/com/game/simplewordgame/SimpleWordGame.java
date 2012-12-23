@@ -1,39 +1,46 @@
 package com.game.simplewordgame;
 
+
+
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Reader;
-import java.lang.reflect.ReflectPermission;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 
-import com.google.ads.AdRequest;
-import com.google.ads.AdView;
+import de.fit.caple.cam.domain.core.Event;
+import de.fit.caple.cam.domain.core.Relatedentity;
+import de.fit.caple.cam.domain.core.Session;
+import de.fit.caple.cam.instance.CamInstance;
+
 
 
 
 import android.app.Activity;
+
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.text.Layout;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnKeyListener;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+
+
+
+
+
+
+
+
 /**
  * This is a simple word game for learning french conjugations.
- * HOX! Näytön kääntely nollaa tilanteen HOX! (Korjattu)
  * 
  * @author Sampo Pietikäinen
  * 
@@ -43,7 +50,7 @@ public class SimpleWordGame extends Activity {
 	private JSONHandler jsonHandler; 
 	private String response = "";
 	private QuestionVerb[] questions;
-	private File file = new File("/sdcard/devel/verbs.dat");
+	
 	private int i = 0;
 	private Results result = new Results();
 	private int correct = 0;
@@ -60,17 +67,20 @@ public class SimpleWordGame extends Activity {
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.main);
 			
+			
+			
 			createJson();
+			createCam();
 			questions = jsonHandler.getQuestions();
 			// verb.testQuestion();
 			
 
-			String row = readRow();
-			verb.parseVerb(row);
+			//String row = readRow();
+			//verb.parseVerb(row);
 			if(savedInstanceState != null){
 				correct = savedInstanceState.getInt("correct");
 			    questionNo=savedInstanceState.getInt("questionNo");
-			    verb.setForm(savedInstanceState.getString("form"));
+			   // verb.setForm(savedInstanceState.getString("form"));
 			}
 			setQuestion();
 			setScore();
@@ -116,19 +126,19 @@ public class SimpleWordGame extends Activity {
 		tv.setText(qno);
 
 	}
-
+	/*
 	/**
 	 * Reads a row from a file
 	 * 
 	 * @param file
 	 * @return
-	 */
+	 *//*
 	private String readRow() {
 		InputStream is = getResources().openRawResource(R.raw.verbs);
 		String rivi = "";
 		InputStreamReader isr = new InputStreamReader(is);
 		BufferedReader breader= new BufferedReader(isr,8192);
-		int i = 0;
+		int i = 0;*/
 		/*try {
 			breader = new BufferedReader(new FileReader(file));
 			while (i < randomNumberMaker(verbs.howManyRows(file))) {
@@ -139,7 +149,7 @@ public class SimpleWordGame extends Activity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return rivi;*/
+		return rivi;*//*
 		try {
 		
 			while (i < randomNumberMaker(howManyRows())) {
@@ -153,7 +163,7 @@ public class SimpleWordGame extends Activity {
 		}
 		return rivi;
 	}
-	
+	*/
 	/**
 	 * Gives a random number
 	 * 
@@ -188,7 +198,7 @@ public class SimpleWordGame extends Activity {
 				lo.setBackgroundColor(0xFFEFFBFE);
 				questionNo++;
 				setQuestionNo();
-				verb.parseVerb(readRow());
+				
 				// setContentView(R.layout.main);
 				setQuestion();
 				ok.setEnabled(true);
@@ -273,11 +283,13 @@ public class SimpleWordGame extends Activity {
 			Toast.makeText(SimpleWordGame.this, "Correct!", Toast.LENGTH_SHORT)
 					.show();
 			next.setVisibility(Button.VISIBLE);
+			questions[questionNo].setCorrect(true);
 			correct++;
 			setScore();
 
 		} else {
 			View lo = findViewById(R.id.bg);
+			questions[questionNo].setCorrect(false);
 			lo.setBackgroundColor(0xFFFF0000);
 			Toast.makeText(SimpleWordGame.this, "Incorrect!",
 					Toast.LENGTH_SHORT).show();
@@ -354,6 +366,24 @@ public class SimpleWordGame extends Activity {
 		}
 		 // showJson(); 
 		
+	}
+	private void createCam(){
+	    CamInstance camInstance = new CamInstance();
+		Event event = new Event();
+		event.setDatetime(Calendar.getInstance().getTime());
+		
+		event.setName("SomeEventName");
+		event.setDatetime(new Date());
+		camInstance.setEvent(event);
+		Session session = new Session();
+		session.setIpAddress("myIp");
+		event.addSession(session);
+		Relatedentity user = new Relatedentity();
+		user.setMetadataReference("userId");
+		user.setMimetype("Person");
+		event.addRelatedentity(user, "userRole");
+		String jsonCam = camInstance.toJson();
+		System.out.println(jsonCam);
 	}
 	
 }

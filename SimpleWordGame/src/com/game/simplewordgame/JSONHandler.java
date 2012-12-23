@@ -74,14 +74,15 @@ public class JSONHandler {
             if(infinitive != null && infinitive.equals(s)){
             	JSONObject jObjectConjugations =jObject.getJSONObject("present indicative");
         		String trunk;
+        		String translation = jObject.getString("translation");
         		
         		if (!jObject.isNull("trunk")){
         			
         			trunk = jObject.getString("trunk");
-        			return new VerbJSON(trunk, jObject.getString("infinitive"), jObjectConjugations.getString("je"), jObjectConjugations.getString("tu"), 
+        			return new VerbJSON(trunk, jObject.getString("infinitive"),translation, jObjectConjugations.getString("je"), jObjectConjugations.getString("tu"), 
         					jObjectConjugations.getString("il"), jObjectConjugations.getString("nous"), jObjectConjugations.getString("vous"), jObjectConjugations.getString("ils"));
         		}else{
-        			return new VerbJSON(jObject.getString("infinitive"), jObjectConjugations.getString("je"), jObjectConjugations.getString("tu"), 
+        			return new VerbJSON(jObject.getString("infinitive"),translation, jObjectConjugations.getString("je"), jObjectConjugations.getString("tu"), 
         					jObjectConjugations.getString("il"), jObjectConjugations.getString("nous"), jObjectConjugations.getString("vous"), jObjectConjugations.getString("ils"));
         		}
 			}
@@ -97,14 +98,14 @@ public class JSONHandler {
 		JSONObject jObject = array.getJSONObject(index);
 		JSONObject jObjectConjugations =jObject.getJSONObject("present indicative");
 		String trunk;
-		
+		String translation = jObject.getString("translation");
 		if (!jObject.isNull("trunk")){
 			
 			trunk = jObject.getString("trunk");
-			return new VerbJSON(trunk, jObject.getString("infinitive"), jObjectConjugations.getString("je"), jObjectConjugations.getString("tu"), 
+			return new VerbJSON(trunk, jObject.getString("infinitive"),translation, jObjectConjugations.getString("je"), jObjectConjugations.getString("tu"), 
 					jObjectConjugations.getString("il"), jObjectConjugations.getString("nous"), jObjectConjugations.getString("vous"), jObjectConjugations.getString("ils"));
 		}else{
-			return new VerbJSON(jObject.getString("infinitive"), jObjectConjugations.getString("je"), jObjectConjugations.getString("tu"), 
+			return new VerbJSON(jObject.getString("infinitive"),translation, jObjectConjugations.getString("je"), jObjectConjugations.getString("tu"), 
 					jObjectConjugations.getString("il"), jObjectConjugations.getString("nous"), jObjectConjugations.getString("vous"), jObjectConjugations.getString("ils"));
 		}
 	}

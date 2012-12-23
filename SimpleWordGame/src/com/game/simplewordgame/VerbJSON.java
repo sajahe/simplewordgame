@@ -3,13 +3,14 @@ package com.game.simplewordgame;
 public class VerbJSON {
 	
 
-	private CharSequence infintive;
-	private CharSequence je;
-	private CharSequence tu;
-	private CharSequence il;
-	private CharSequence nous;
-	private CharSequence vous;
-	private CharSequence ils;
+	private String infintive;
+	private String translation;
+	private String je;
+	private String tu;
+	private String il;
+	private String nous;
+	private String vous;
+	private String ils;
 	
 	/**
 	 * Constructs verb conjugation from similiar trunk
@@ -24,10 +25,11 @@ public class VerbJSON {
 	 * @param vous = you (plural or polite)
 	 * @param ils = they
 	 */
-	public VerbJSON(String trunk,String infintive, String je, String tu,
+	public VerbJSON(String trunk,String infintive,String translation, String je, String tu,
 			String il, String nous, String vous,
 			String ils) {
 		super();
+		this.translation = translation;
 		this.infintive = trunk.concat(infintive) ;
 		this.je = trunk.concat(je);
 		this.tu = trunk.concat(tu);
@@ -37,11 +39,12 @@ public class VerbJSON {
 		this.ils = trunk.concat(ils);
 	}
 	
-	public VerbJSON(CharSequence infintive, CharSequence je, CharSequence tu,
-			CharSequence il, CharSequence nous, CharSequence vous,
-			CharSequence ils) {
+	public VerbJSON(String infintive, String translation, String je, String tu,
+			String il, String nous, String vous,
+			String ils) {
 		super();
 		this.infintive = infintive;
+		this.translation = translation;
 		this.je = je;
 		this.tu = tu;
 		this.il = il;
@@ -50,31 +53,35 @@ public class VerbJSON {
 		this.ils = ils;
 	}
 
-	public CharSequence getInfintive() {
+	public String getInfintive() {
 		return infintive;
 	}
+	
+	public String getTranslation() {
+		return translation;
+	}
 
-	public CharSequence getJe() {
+	public String getJe() {
 		return je;
 	}
 
-	public CharSequence getTu() {
+	public String getTu() {
 		return tu;
 	}
 
-	public CharSequence getIl() {
+	public String getIl() {
 		return il;
 	}
 
-	public CharSequence getNous() {
+	public String getNous() {
 		return nous;
 	}
 
-	public CharSequence getVous() {
+	public String getVous() {
 		return vous;
 	}
 
-	public CharSequence getIls() {
+	public String getIls() {
 		return ils;
 	}
 	
