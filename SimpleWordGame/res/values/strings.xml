@@ -15,6 +15,13 @@
         <item >ils</item>
         <item >elles</item>
     </string-array>
+    <string-array name="impf">
+        <item >ais</item>
+        <item >ait</item>
+        <item >ions</item>
+        <item >iez</item>
+        <item >aient</item>
+    </string-array>    
     <string-array name="tenses">
         <item >present</item>
         <item >imperfect</item>

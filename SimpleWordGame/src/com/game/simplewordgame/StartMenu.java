@@ -52,7 +52,7 @@ public class StartMenu extends Activity {
     	start.setOnClickListener(new OnClickListener() {
     	    public void onClick(View v) {
     	    
-    	        	Intent intent = new Intent(v.getContext(), SimpleWordGame.class);
+    	        	Intent intent = new Intent(v.getContext(), TenseSelect.class);
                     startActivity(intent);
                     
     	        }

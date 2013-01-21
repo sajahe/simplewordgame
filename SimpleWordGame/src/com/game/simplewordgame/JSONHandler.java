@@ -60,6 +60,46 @@ public class JSONHandler {
 		}
 		
 	}
+	public QuestionVerb parseRandomImperfectQuestion(Context context) throws JSONException{
+		int index =rnd.nextInt(array.length()-1);
+		JSONObject jObject = array.getJSONObject(index);
+		JSONObject jObjectConjugations =jObject.getJSONObject("present indicative");
+		JSONObject jImperfectObject = jObject.getJSONObject("imperfect");
+		
+		String trunk;
+		String infinitive;
+		String impfTrunk;
+		
+		String[] endings = context.getResources().getStringArray(R.array.impf);
+		int rndNumber = rnd.nextInt(5);
+		String pronoun = getRandomPronoun(rndNumber);
+		String ending;
+		if(rndNumber > 1){
+		ending =endings[rndNumber-1];
+		}else{
+			ending =endings[0];
+		}
+		if (!jObject.isNull("trunk")){
+			
+			trunk = jObject.getString("trunk");
+			infinitive =trunk.concat(jObject.getString("infinitive"));
+			}else{
+			infinitive = jObject.getString("infinitive");	
+			}
+		
+		if (!jImperfectObject.isNull("trunk")){
+			
+			impfTrunk = jImperfectObject.getString("trunk");
+			
+			return new QuestionVerb(infinitive, impfTrunk.concat(ending), pronoun);
+		
+		}else{
+			trunk = jObject.getString("trunk");
+			return new QuestionVerb(infinitive, trunk.concat(ending), pronoun);
+		}
+		
+	}
+	
 	
 	public VerbJSON parseVerbJSON(String s) throws JSONException {
 		
@@ -180,12 +220,56 @@ public void parseStringIntoJSON(String string) throws JSONException{
 		}
 		return text;
 	}
-	public QuestionVerb[] getQuestions() throws JSONException{
+	public QuestionVerb[] getQuestions(int tense, Context context) throws JSONException{
 		QuestionVerb[] qv = new QuestionVerb[10]; 
-		for (int i = 0; i < qv.length; i++) {
-			qv[i] = parseRandomQuestion();
+		switch (tense) {
+		case 1:
+			for (int i = 0; i < qv.length; i++) {
+				qv[i] = parseRandomQuestion();
+			}	
+			break;
+		case 2:
+			for (int i = 0; i < qv.length; i++) {
+				qv[i] = parseRandomImperfectQuestion(context);
+			}	
+			break;
+		case 3:
+			for (int i = 0; i < qv.length; i++) {
+				qv[i] = parseRandomQuestion();
+			}	
+			break;
+
+		default:
+			break;
 		}
+		
 		return qv;
+	}
+private static String getRandomPronoun(int i){
+		
+		switch (i) {
+		case 0:
+			
+			return "je";
+case 1:
+			
+	return "tu";
+case 2:
+	
+	return "il";
+case 3:
+	
+	return "nous";
+case 4:
+	
+	return "vous";
+case 5:
+	
+	return "ils";
+
+		default:
+			return"";
+		}
 	}
 	
 	private static String getRandomPronoun(){

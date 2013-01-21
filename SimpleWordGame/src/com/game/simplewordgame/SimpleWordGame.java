@@ -71,7 +71,7 @@ public class SimpleWordGame extends Activity {
 			
 			createJson();
 			createCam();
-			questions = jsonHandler.getQuestions();
+			questions = jsonHandler.getQuestions(getIntent().getExtras().getInt("tense"), this);
 			// verb.testQuestion();
 			
 

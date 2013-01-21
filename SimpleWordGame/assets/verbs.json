@@ -7,7 +7,9 @@
 "il":"a",
 "nous":"avons",
 "vous":"avez",
-"ils":"ont"}
+"ils":"ont"},
+"imperfect":{"trunk":"av"},
+"pc":{"aux":true, "participe":"eu"}
 
 },{
 "infinitive": "aller",
@@ -18,8 +20,9 @@
 "il":"va",
 "nous":"allons",
 "vous":"allez",
-"ils":"vont"}
-
+"ils":"vont"},
+"imperfect":{"trunk":all},
+"pc":{"aux":false, "participe":"allé"}
 },{
 "infinitive": "boire",
 "translation":"to drink",
@@ -30,7 +33,9 @@
 "nous":"buvons",
 "vous":"buvez",
 "ils":"boivent"}
-
+"imperfect":{"trunk":"buv"}
+,
+"pc":{"aux":true, "participe":"bu"}
 },
 {
 "trunk": "conna",
@@ -42,7 +47,9 @@
 "il":"ît",
 "nous":"issons",
 "vous":"issez",
-"ils":"issent"}
+"ils":"issent"},
+"imperfect":{"trunk":"connaiss"},
+"pc":{"aux":true, "participe":"connu"}
 },
 {
 "trunk": "cour",
@@ -54,7 +61,9 @@
 "il":"t",
 "nous":"ons",
 "vous":"ez",
-"ils":"ent"}
+"ils":"ent"},
+"imperfect":{},
+"pc":{"aux":true, "participe":"couru"}
 },
 {
 "infinitive": "devoir",
@@ -65,7 +74,9 @@
 "il":"doit",
 "nous":"devons",
 "vous":"devez",
-"ils":"doivent"}
+"ils":"doivent"},
+"imperfect":{"trunk":"dev"}
+"pc":{"aux":true, "participe":"dû"}
 },
 {
 "trunk": "di",
@@ -77,8 +88,9 @@
 "il":"t",
 "nous":"sons",
 "vous":"tes",
-"ils":"sent"}
-
+"ils":"sent"},
+"imperfect":{"trunk":"dis"},
+"pc":{"aux":true, "participe":"dit"}
 },
 {
 "infinitive": "être",
@@ -89,8 +101,9 @@
 "il":"est",
 "nous":"sommes",
 "vous":"êtes",
-"ils":"sont"}
-
+"ils":"sont"},
+"imperfect":{"trunk":"ét"},
+"pc":{"aux":true, "participe":"été"}
 },
 {
 "infinitive": "faire",
@@ -101,8 +114,9 @@
 "il":"fait",
 "nous":"faisons",
 "vous":"faites",
-"ils":"font"}
-
+"ils":"font"},
+"imperfect":{"trunk":"fais"},
+"pc":{"aux":true, "participe":"fait"}
 },
 {
 "trunk": "li",
@@ -115,7 +129,8 @@
 "nous":"sons",
 "vous":"sez",
 "ils":"sent"}
-
+"imperfect":{"trunk":"lis"},
+"pc":{"aux":true, "participe":"lu"}
 },
 {
 "trunk": "par",
@@ -128,6 +143,8 @@
 "nous":"tons",
 "vous":"tez",
 "ils":"tent"}
+"imperfect":{"trunk":"part"},
+"pc":{"aux":false, "participe":"parti"}
 },
 {
 "infinitive": "pouvoir",
@@ -138,7 +155,9 @@
 "il":"peut",
 "nous":"pouvons",
 "vous":"pouvez",
-"ils":"peuvent"}
+"ils":"peuvent"},
+"imperfect":{"trunk":"pouv"},
+"pc":{"aux":true, "participe":"pu"}
 },
 {
 "trunk": "pren",
@@ -150,7 +169,9 @@
 "il":"d",
 "nous":"ons",
 "vous":"ez",
-"ils":"nent"}
+"ils":"nent"},
+"imperfect":{"trunk":"pren"},
+"pc":{"aux":true, "participe":"pris"}
 },
 {
 "trunk": "sa",
@@ -162,7 +183,9 @@
 "il":"it",
 "nous":"vons",
 "vous":"vez",
-"ils":"vent"}
+"ils":"vent"},
+"imperfect":{"trunk":"sav"},
+"pc":{"aux":true, "participe":"su"}
 },
 {
 "infinitive": "venir",
@@ -173,7 +196,9 @@
 "il":"vient",
 "nous":"venons",
 "vous":"venez",
-"ils":"viennent"}
+"ils":"viennent"},
+"imperfect":{"trunk":"ven"},
+"pc":{"aux":true, "participe":"venú"}
 },
 {
 "trunk": "vo",
@@ -185,7 +210,9 @@
 "il":"it",
 "nous":"yons",
 "vous":"yez",
-"ils":"ient"}
+"ils":"ient"},
+"imperfect":{"trunk":"voy"},
+"pc":{"aux":true, "participe":"vu"}
 },
 {
 "infinitive": "vouloir",
@@ -196,7 +223,9 @@
 "il":"veut",
 "nous":"voulons",
 "vous":"voulez",
-"ils":"veulent"}
+"ils":"veulent"},
+"imperfect":{"trunk":"voul"},
+"pc":{"aux":true, "participe":"voulu"}
 }],
 {"trunks":{"jouer":"to play","parler":"to speak","écouter":"to listen","retourner":"to return"},
 "present indicative":{
@@ -205,6 +234,8 @@
 "il":"e",
 "nous":"ons",
 "vous":"ez",
-"ils":"ent"}
+"ils":"ent"},
+"imperfect":{"trunk":""},
+"pc":{"aux":true, "participe":"é"}
 },
 }
