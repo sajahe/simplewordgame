@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/camapi/!svn/ver/54/trunk/CamSchema%20v2.0/src/de/fit/caple/cam/domain/relation
+END
+EventRelatedentity.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svnroot/camapi/!svn/ver/54/trunk/CamSchema%20v2.0/src/de/fit/caple/cam/domain/relation/EventRelatedentity.java
+END
+EventRelatedentityId.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svnroot/camapi/!svn/ver/54/trunk/CamSchema%20v2.0/src/de/fit/caple/cam/domain/relation/EventRelatedentityId.java
+END

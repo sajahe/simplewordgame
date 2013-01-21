@@ -1,0 +1,309 @@
+package de.fit.caple.cam.domain.core;
+
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.PersistenceException;
+
+import org.hibernate.TransactionException;
+import org.hibernate.exception.JDBCConnectionException;
+
+import de.fit.caple.cam.domain.relation.EventRelatedentity;
+import de.fit.caple.cam.utils.PersistResponse;
+
+/**
+ * This Class represents the CAM Event Object
+ * This is the central class because a CAM instance is an Event (user action) 
+ * whith several related entities an an optional Context
+ * 
+ * @author Martin Friedrich
+ * 04.01.2011
+ *
+ */
+@SuppressWarnings({"serial"})
+@Entity
+public class Event implements Serializable {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id = null;
+	@Column(columnDefinition="VARCHAR(64)")
+	private String name = null;
+	@Column(nullable=false)
+	private Date datetime = null;
+	@Column(columnDefinition="VARCHAR(64)")
+	private String sharingLevel = null;
+	@OneToMany(mappedBy="event")
+	private List<EventRelatedentity> eventRelatedentityRelations;
+
+	// one event has > 1 relatedentities
+	// each event can contain context information
+	@ManyToMany 
+    @JoinTable(name="EventSession", 
+          joinColumns=@JoinColumn(name="eventid"),
+          inverseJoinColumns=@JoinColumn(name="sessionid"))
+    private List<Session> sessions = null;
+	
+	public Event() {
+		this.eventRelatedentityRelations = new ArrayList<EventRelatedentity>();
+		this.sessions = new ArrayList<Session>();
+	}
+
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * @return the datetime
+	 */
+	public Date getDatetime() {
+		return datetime;
+	}
+
+	/**
+	 * @param datetime the datetime to set
+	 */
+	public void setDatetime(Date datetime) {
+		this.datetime = datetime;
+	}
+
+	/**
+	 * @return the sharingLevel
+	 */
+	public String getSharingLevel() {
+		return sharingLevel;
+	}
+
+	/**
+	 * @param sharingLevel the sharingLevel to set
+	 */
+	public void setSharingLevel(String sharingLevel) {
+		this.sharingLevel = sharingLevel;
+	}
+
+	/**
+	 * @return the relatedentities connected to the event
+	 */
+	public List<EventRelatedentity> getEventRelatedentities() {
+		return this.eventRelatedentityRelations;
+	}
+	
+	/**
+	 * @return the relatedentities connected to the event
+	 */
+	public List<Relatedentity> getRelatedentities() {
+		List<Relatedentity> relatedentities = new ArrayList<Relatedentity>();
+		for (EventRelatedentity er : this.eventRelatedentityRelations) {
+			relatedentities.add(er.getRelatedentity());
+		}
+		return relatedentities;
+	}
+	
+	/**
+	 * 
+	 * @param relatedentity which is added to the event
+	 * @param role of this entity for this event
+	 */
+	public void addRelatedentity(Relatedentity relatedentity, String role) {
+		EventRelatedentity newEr = new EventRelatedentity();
+		newEr.setEvent(this);
+		newEr.setEventId(this.getId());
+		newEr.setRelatedentity(relatedentity);
+		newEr.setRelatedentityId(relatedentity.getId());
+		newEr.setRole(role);
+		
+		this.eventRelatedentityRelations.add(newEr);
+		relatedentity.getEventRelatedentityRelations().add(newEr);
+		
+	}
+	
+	/**
+	 * @return the session
+	 */
+	public List<Session> getSessions() {
+		return sessions;
+	}
+
+	/**
+	 * @param session to add
+	 */
+	public void addSession(Session session) {
+		if (!this.sessions.contains(session)) { 
+			session.addEvent(this);
+			this.sessions.add(session);
+		}
+	}
+
+	/**
+	 * removes bidirectional reference for all Event <-> Relatedentity entries
+	 * generates unidirectional reference (from "Event <-> Relatedentity" to "Event -> Relatedentity"
+	 * required for serialization
+	 */
+	public void removeCircles() {
+		for (Session session : this.sessions) {
+			session.getEvents().clear();
+		}
+		// remove circles Event -> Relatedentity
+		for (EventRelatedentity er : this.eventRelatedentityRelations) {
+			er.setEvent(null);
+			er.getRelatedentity().getEventRelatedentityRelations().clear();
+		}
+	}
+	
+	/**
+	 * SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	 * 
+	 * @param date
+	 * @return returns the formatted date
+	 */
+	public String formatDate(Date date) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String result = sdf.format(date);
+		return result;
+	}
+	
+	/**
+	 * adds bidirectional reference for all Event <-> Relatedentity entries
+	 * generates bidirectional reference (from "Event -> Relatedentity" to "Event <-> Relatedentity"
+	 * required for persistence
+	 */
+	public void addCircles() {
+		// add circles Event -> Relatedentity
+		for (EventRelatedentity er : this.eventRelatedentityRelations) {
+			er.setEvent(this);
+		}
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		String entityIds = "";
+		for (EventRelatedentity er : this.eventRelatedentityRelations) {
+			entityIds += er.getRelatedentity().getId() + ", ";
+		}
+		if (entityIds.length() > 2) {
+			entityIds = entityIds.substring(0, entityIds.length()-2);
+		}
+		
+		String sessionIds = "";
+		for (Session s : this.sessions) {
+			sessionIds += s.getId() + ", ";
+		}
+		if (sessionIds.length() > 2) {
+			sessionIds = sessionIds.substring(0, sessionIds.length()-2);
+		}
+		
+		return "Event [id=" + id + ", name=" + name + ", datetime=" + datetime
+				+ ", relatedentities=[" + entityIds + "], sessions=["
+				+ sessionIds + "]";
+	}
+	
+
+	/**
+	 * Persists an Event object with all sub-objects into the database linked in the Entitymanager
+	 * Does not check for duplicate events since we assume that each event is unique
+	 * 
+	 * @param entityManager that contains the database connection
+	 * @return a PersistResponse giving info about what has been persisted 
+	 * 
+	 * @throws JDBCConnectionException
+	 * @throws TransactionException
+	 * @throws PersistenceException
+	 */
+	public PersistResponse persist(EntityManager entityManager) throws JDBCConnectionException, TransactionException, PersistenceException {
+		PersistResponse pr = new PersistResponse();
+		if (entityManager != null && this != null 
+				&& this.eventRelatedentityRelations != null 
+				&& this.eventRelatedentityRelations.size() > 0 
+				&& (this.getName() != null || this.getDatetime() != null
+						|| this.sessions.size() > 0 || this.eventRelatedentityRelations.size() > 0
+		)) {
+			
+			entityManager.persist(this);
+			pr.setId(this.getId().toString());
+			pr.setSuccess(true);
+			pr.setEventCount(pr.getEventCount()+1);
+			
+			// Save Session
+			PersistResponse tmpPersistResponse;
+			for (Session session : this.sessions) {
+				try {
+					session.getEvents().clear();
+					tmpPersistResponse = session.persist(entityManager);
+					pr.setSessionCount(pr.getSessionCount() + tmpPersistResponse.getSessionCount());
+					pr.setEventSessionCount(pr.getEventSessionCount()+1);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			
+			// persist relatedentities
+			List<Integer> errors = new ArrayList<Integer>();
+			for (EventRelatedentity er : this.eventRelatedentityRelations) {
+				Relatedentity r = er.getRelatedentity();
+				r.getEventRelatedentityRelations().clear();
+				tmpPersistResponse = r.persist(entityManager);
+				if (tmpPersistResponse.isSuccess()) {
+					er.setRelatedentityId(er.getRelatedentity().getId());
+					er.setEventId(er.getEvent().getId());
+					pr.setRelatedentityCount(pr.getRelatedentityCount() + tmpPersistResponse.getRelatedentityCount());					
+				} else {
+					errors.add(this.eventRelatedentityRelations.indexOf(er));
+				}
+			}
+			
+			Collections.reverse(errors);
+			for (Integer index : errors) {
+				this.eventRelatedentityRelations.remove(this.eventRelatedentityRelations.get(index));
+			}
+			
+			// Now save all EventRelatedentity Relations
+			for (EventRelatedentity er : this.eventRelatedentityRelations) {
+				// set correct id's 
+				er.setRelatedentityId(er.getRelatedentity().getId());
+				er.setEventId(er.getEvent().getId());
+				
+				// die fehlt noch
+				tmpPersistResponse = er.persist(entityManager);
+				pr.setEventRelatedentityCount(pr.getEventRelatedentityCount() + tmpPersistResponse.getEventRelatedentityCount());
+			}
+		}
+		return pr;
+	}
+}

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/camapi/!svn/ver/31/trunk/CamSchema%20v2.0/src/de/fit/caple/cam/rules
+END
+EntityGenerationRule.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svnroot/camapi/!svn/ver/31/trunk/CamSchema%20v2.0/src/de/fit/caple/cam/rules/EntityGenerationRule.java
+END
+EventGenerationRule.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svnroot/camapi/!svn/ver/6/trunk/CamSchema%20v2.0/src/de/fit/caple/cam/rules/EventGenerationRule.java
+END
+CamGenerationRules.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svnroot/camapi/!svn/ver/31/trunk/CamSchema%20v2.0/src/de/fit/caple/cam/rules/CamGenerationRules.java
+END
+SessionGenerationRule.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svnroot/camapi/!svn/ver/5/trunk/CamSchema%20v2.0/src/de/fit/caple/cam/rules/SessionGenerationRule.java
+END

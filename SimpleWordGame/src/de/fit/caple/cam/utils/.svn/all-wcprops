@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/camapi/!svn/ver/69/trunk/CamSchema%20v2.0/src/de/fit/caple/cam/utils
+END
+SqlConnection.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svnroot/camapi/!svn/ver/5/trunk/CamSchema%20v2.0/src/de/fit/caple/cam/utils/SqlConnection.java
+END
+Utils.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/camapi/!svn/ver/69/trunk/CamSchema%20v2.0/src/de/fit/caple/cam/utils/Utils.java
+END
+SqliteDialect.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svnroot/camapi/!svn/ver/56/trunk/CamSchema%20v2.0/src/de/fit/caple/cam/utils/SqliteDialect.java
+END
+ConfigReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svnroot/camapi/!svn/ver/63/trunk/CamSchema%20v2.0/src/de/fit/caple/cam/utils/ConfigReader.java
+END
+PersistResponse.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svnroot/camapi/!svn/ver/31/trunk/CamSchema%20v2.0/src/de/fit/caple/cam/utils/PersistResponse.java
+END

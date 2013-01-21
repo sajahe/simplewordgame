@@ -1,0 +1,151 @@
+package de.fit.caple.cam.utils;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+/**
+ * Info of the persistence process.
+ * Contains the information if the persistence process was successful and what exactly has been perstsied
+ * 
+ * @author Martin Friedrich
+ * 04.01.2011
+ *
+ */
+@XmlRootElement
+public class PersistResponse {
+	private boolean success;
+	private String id;
+	private int eventCount = 0;
+	private int relatedentityCount = 0;
+	private int eventRelatedentityCount = 0;
+	private int sessionCount = 0;
+	private int eventSessionCount = 0;
+	private long duration = 0;
+	
+	public PersistResponse() {
+		this.success = false;
+		this.id = null;
+	}
+
+	/**
+	 * @return the success
+	 */
+	public boolean isSuccess() {
+		return success;
+	}
+
+	/**
+	 * @param success the success to set
+	 */
+	public void setSuccess(boolean success) {
+		this.success = success;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public String getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the eventCount
+	 */
+	public int getEventCount() {
+		return eventCount;
+	}
+
+	/**
+	 * @param eventCount the eventCount to set
+	 */
+	public void setEventCount(int eventCount) {
+		this.eventCount = eventCount;
+	}
+
+	/**
+	 * @return the relatedentityCount
+	 */
+	public int getRelatedentityCount() {
+		return relatedentityCount;
+	}
+
+	/**
+	 * @param relatedentityCount the relatedentityCount to set
+	 */
+	public void setRelatedentityCount(int relatedentityCount) {
+		this.relatedentityCount = relatedentityCount;
+	}
+
+	/**
+	 * @return the sessionCount
+	 */
+	public int getSessionCount() {
+		return sessionCount;
+	}
+
+	/**
+	 * @param sessionCount the sessionCount to set
+	 */
+	public void setSessionCount(int sessionCount) {
+		this.sessionCount = sessionCount;
+	}
+	
+	/**
+	 * @return the eventSessionCount
+	 */
+	public int getEventSessionCount() {
+		return eventSessionCount;
+	}
+
+	/**
+	 * @param eventSessionCount the eventSessionCount to set
+	 */
+	public void setEventSessionCount(int eventSessionCount) {
+		this.eventSessionCount = eventSessionCount;
+	}
+
+	/**
+	 * @return the eventRelatedentityCount
+	 */
+	public int getEventRelatedentityCount() {
+		return eventRelatedentityCount;
+	}
+
+	/**
+	 * @param eventRelatedentityCount the eventRelatedentityCount to set
+	 */
+	public void setEventRelatedentityCount(int eventRelatedentityCount) {
+		this.eventRelatedentityCount = eventRelatedentityCount;
+	}
+
+	/**
+	 * @return the duration
+	 */
+	public long getDuration() {
+		return duration;
+	}
+
+	/**
+	 * @param duration the duration to set
+	 */
+	public void setDuration(long duration) {
+		this.duration = duration;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "PersistResponse [success=" + success + ", id=" + id
+				+ ", events=" + eventCount + ", relatedentities=" + relatedentityCount
+				+ ", sessions="
+				+ sessionCount + ", eventRelatedentity=" + eventRelatedentityCount  + ", duration=" + duration + "]";
+	}
+}

@@ -1,0 +1,40 @@
+package de.fit.caple.cam.utils;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+public class Utils {
+
+	/**
+	 * generates a SHA-512 Hash value to a given String value
+	 * @param data the string value which should be hashed
+	 * @return the SHA-512 Hash value of the given string
+	 * 
+	 * @throws NoSuchAlgorithmException
+	 */
+	public static String generateHashValue(String data) throws NoSuchAlgorithmException {
+		MessageDigest algo = MessageDigest.getInstance("SHA-512");
+    	algo.reset();
+    	algo.update(data.getBytes());
+    	
+    	byte messageDigest[] = algo.digest();
+        
+    	StringBuffer hexString = new StringBuffer();
+    	for (int i=0;i<messageDigest.length;i++) {
+    		hexString.append(String.format("%02x", messageDigest[i])); 
+    	}
+    	return hexString.toString();
+	}
+	
+	public static String toJson(Object obj) {
+		GsonBuilder gb = new GsonBuilder();
+		gb.serializeNulls();
+		gb.disableHtmlEscaping();
+		gb.setDateFormat("yyyy-MM-dd HH:mm:ss");
+		Gson gson = gb.setPrettyPrinting().create();
+		String json = gson.toJson(obj);
+		return json;
+	}
+}
