@@ -11,8 +11,11 @@ import android.widget.TextView;
 
 
 public class Results extends Activity{
+	private SimpleApp app;
 		public void onCreate(Bundle savedInstanceState){
 			super.onCreate(savedInstanceState);
+			app =((SimpleApp)getApplicationContext());
+			app.createCamEvent("Start "+this.getClass().getSimpleName());
 			setContentView(R.layout.result);
 			
 			Bundle extras = getIntent().getExtras();
@@ -25,6 +28,8 @@ public class Results extends Activity{
 			tv.setText("Perfect Score!");
 			
 			}
+			
+			app.createCamEvent("Score "+this.getClass().getSimpleName()+" "+number);
 			menuButton();
 			newButton();
 		}
@@ -35,6 +40,7 @@ public class Results extends Activity{
 	    	    
 	    	        	//Intent intent1 = new Intent(v1.getContext(), StartMenu.class);
 	                    //startActivity(intent1);
+	    	    		app.createCamEvent("Select menu "+this.getClass().getSimpleName());
 	                    finish();
 	    	        }
 
@@ -51,7 +57,8 @@ public class Results extends Activity{
 	    	    public void onClick(View v) {
 	    	    
 	    	        	Intent intent = new Intent(v.getContext(), SimpleWordGame.class);
-	                    startActivity(intent);
+	    	        	app.createCamEvent("Select new game "+this.getClass().getSimpleName());
+	    	        	startActivity(intent);
 	                    finish();
 	    	        }
 
@@ -61,6 +68,19 @@ public class Results extends Activity{
 	    	});
 	    	
 	    }
+		@Override
+		protected void onPause(){
+			app.createCamEvent("Pause "+this.getClass().getSimpleName());
+			super.onPause();
+			
+		}
+		@Override
+		protected void onResume(){
+			app.createCamEvent("Resume "+this.getClass().getSimpleName());
+			super.onResume();
+			
+			
+		}
 
 }	
 

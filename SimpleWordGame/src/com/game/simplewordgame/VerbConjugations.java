@@ -26,6 +26,7 @@ import android.widget.TextView;
  */
 public class VerbConjugations extends Activity{
 	private JSONHandler jsonh;
+	private SimpleApp app;
 	private final String[] testVerbs= {"avoir","aller","boire","connaître","courir","devoir","dire","être","faire","lire","partir","pouvoir","prendre","savoir","venir","voir","vouloir"};
 	private Context context;
 	private String conjugatedVerb;
@@ -33,6 +34,8 @@ public class VerbConjugations extends Activity{
 		  super.onCreate(savedInstanceState);
 		  setContentView(R.layout.verb_conjugations);
 		  conjugatedVerb= getIntent().getExtras().getString("verb");
+		  app =((SimpleApp)getApplicationContext());
+		  app.createCamEvent("Start "+this.getClass().getSimpleName()+" "+conjugatedVerb);
 		  context = this;
 		  
 		  
@@ -141,6 +144,19 @@ public class VerbConjugations extends Activity{
 		  
 		  TextView tv = (TextView) findViewById(R.id.textView1);
 		  tv.setText(conjugations[0]);
+		
+	}
+	@Override
+	protected void onPause(){
+		app.createCamEvent("Pause "+this.getClass().getSimpleName());
+		super.onPause();
+		
+	}
+	@Override
+	protected void onResume(){
+		app.createCamEvent("Resume "+this.getClass().getSimpleName());
+		super.onResume();
+		
 		
 	}
 }
