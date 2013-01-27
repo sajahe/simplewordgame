@@ -1,0 +1,12 @@
+{"trunks":{"jouer":"to play","parler":"to speak","écouter":"to listen","retourner":"to return"},
+"present indicative":{
+"je":"e",
+"tu":"es",
+"il":"e",
+"nous":"ons",
+"vous":"ez",
+"ils":"ent"},
+"imperfect":{"trunk":""},
+"pc":{"aux":true, "participe":"é"}
+},
+}
