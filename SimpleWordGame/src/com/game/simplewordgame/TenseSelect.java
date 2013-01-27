@@ -20,9 +20,12 @@ import android.widget.TextView;
  *
  */
 public class TenseSelect extends Activity {
+	private SimpleApp app;
 	private static final String TAG = "Error";
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		app =((SimpleApp)getApplicationContext());
+		app.createCamEvent("Start "+this.getClass().getSimpleName());
 		setContentView(R.layout.select_tense);
 		startButton();
 		helpButton();
@@ -80,5 +83,16 @@ public class TenseSelect extends Activity {
     	    
     	});
 	
+	}
+	@Override
+	protected void onPause(){
+		app.createCamEvent("Pause "+this.getClass().getSimpleName());
+		super.onPause();
+		
+	}
+	@Override
+	protected void onResume(){
+		app.createCamEvent("Resume "+this.getClass().getSimpleName());
+		super.onResume();
 	}
 }

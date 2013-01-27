@@ -21,7 +21,7 @@
 "nous":"allons",
 "vous":"allez",
 "ils":"vont"},
-"imperfect":{"trunk":all},
+"imperfect":{"trunk":"all"},
 "pc":{"aux":false, "participe":"allé"}
 },{
 "infinitive": "boire",
@@ -32,7 +32,7 @@
 "il":"boit",
 "nous":"buvons",
 "vous":"buvez",
-"ils":"boivent"}
+"ils":"boivent"},
 "imperfect":{"trunk":"buv"}
 ,
 "pc":{"aux":true, "participe":"bu"}
@@ -75,7 +75,7 @@
 "nous":"devons",
 "vous":"devez",
 "ils":"doivent"},
-"imperfect":{"trunk":"dev"}
+"imperfect":{"trunk":"dev"},
 "pc":{"aux":true, "participe":"dû"}
 },
 {
@@ -128,7 +128,7 @@
 "il":"t",
 "nous":"sons",
 "vous":"sez",
-"ils":"sent"}
+"ils":"sent"},
 "imperfect":{"trunk":"lis"},
 "pc":{"aux":true, "participe":"lu"}
 },
@@ -142,7 +142,7 @@
 "il":"t",
 "nous":"tons",
 "vous":"tez",
-"ils":"tent"}
+"ils":"tent"},
 "imperfect":{"trunk":"part"},
 "pc":{"aux":false, "participe":"parti"}
 },
@@ -226,16 +226,4 @@
 "ils":"veulent"},
 "imperfect":{"trunk":"voul"},
 "pc":{"aux":true, "participe":"voulu"}
-}],
-{"trunks":{"jouer":"to play","parler":"to speak","écouter":"to listen","retourner":"to return"},
-"present indicative":{
-"je":"e",
-"tu":"es",
-"il":"e",
-"nous":"ons",
-"vous":"ez",
-"ils":"ent"},
-"imperfect":{"trunk":""},
-"pc":{"aux":true, "participe":"é"}
-},
-}
+}]

@@ -20,6 +20,7 @@ import android.widget.ListView;
 
 public class VerbList extends ListActivity {
 	private static Context mContext;
+	private SimpleApp app;
 	Verb verb = new Verb();
 	RawFileHandler rfh = new RawFileHandler();
 	CharSequence[] verbs;
@@ -30,6 +31,8 @@ public class VerbList extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		  super.onCreate(savedInstanceState);
 		  mContext = this;
+		  app =((SimpleApp)getApplicationContext());
+		  app.createCamEvent("Start "+this.getClass().getSimpleName());
 		setContentView(R.layout.verb_list_2);
 		// ListView lv = (ListView)findViewById(R.id.text);
 	
@@ -75,11 +78,16 @@ public class VerbList extends ListActivity {
 		 
 		  
 	}
+	/*
+	 * 
+	 * cam relevant
+	 */
 	 protected void onListItemClick(ListView l, View v, int position, long id) {
 	        super.onListItemClick(l, v, position, id);
 	        Object o = this.getListAdapter().getItem(position);
 	        CharSequence verb = o.toString();
 	        Intent intent1 = new Intent(v.getContext(), VerbConjugations.class);
+	        app.createCamEvent("Select "+verb);
 	        intent1.putExtra("verb", verb);
             startActivity(intent1);
 	    }
@@ -115,5 +123,19 @@ private void verbArrayMaker() {
 	private String lineParser() {
 		// TODO Auto-generated method stub
 		return null;
-	}  
+	} 
+	@Override
+	protected void onPause(){
+		app.createCamEvent("Pause "+this.getClass().getSimpleName());
+		super.onPause();
+		
+	}
+	@Override
+	protected void onResume(){
+		app.createCamEvent("Resume "+this.getClass().getSimpleName());
+		super.onResume();
+		
+		
+	}
+	
 }

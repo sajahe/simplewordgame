@@ -1,18 +1,17 @@
 package com.game.simplewordgame;
 
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Environment;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
 /**
  * This is the start menu for the simple word game.
@@ -21,8 +20,13 @@ import android.widget.TextView;
  */
 public class StartMenu extends Activity {
 	private static final String TAG = "Error";
+	private SimpleApp app;
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		app =((SimpleApp)getApplicationContext());
+		app.createCamEvent("Start "+this.getClass().getSimpleName());
+		System.out.println("Start "+this.getClass().getSimpleName());
+		createCamFile();
 		setContentView(R.layout.start);
 		startButton();
 		helpButton();
@@ -31,6 +35,46 @@ public class StartMenu extends Activity {
 			
 		
 	}
+	private void createCamFile() {
+		String FILENAME = "hello_world";
+		String json = "hello worldSimple!";
+		
+		boolean mExternalStorageAvailable = false;
+		boolean mExternalStorageWriteable = false;
+		String state = Environment.getExternalStorageState();
+
+		if (Environment.MEDIA_MOUNTED.equals(state)) {
+		   
+		    mExternalStorageAvailable = mExternalStorageWriteable = true;
+		} else if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+		    // We can only read the media
+		    mExternalStorageAvailable = true;
+		    mExternalStorageWriteable = false;
+		} else {
+		    // Something else is wrong. It may be one of many other states, but all we need
+		    //  to know is we can neither read nor write
+		    mExternalStorageAvailable = mExternalStorageWriteable = false;
+		}
+		if(mExternalStorageAvailable == mExternalStorageWriteable == true){
+		File externalDir = Environment.getExternalStorageDirectory();
+		
+		File textFile = new File(externalDir.getAbsolutePath()
+				+ File.separator + "simple.json");
+
+		try {
+			writeTextFile(textFile, json);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}}
+		// TODO Auto-generated method stub
+		
+	}
+	private void writeTextFile(File file, String text) throws IOException {
+		BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+		writer.write(text);
+		writer.close();
+		}
 	private void helpButton() {
     	final Button help = (Button) findViewById(R.id.help);
     	help.setOnClickListener(new OnClickListener() {
@@ -77,5 +121,18 @@ public class StartMenu extends Activity {
     	    
     	});
 	
+	}
+	@Override
+	protected void onPause(){
+		app.createCamEvent("Pause "+this.getClass().getSimpleName());
+		super.onPause();
+		
+	}
+	@Override
+	protected void onResume(){
+		app.createCamEvent("Resume "+this.getClass().getSimpleName());
+		super.onResume();
+		
+		
 	}
 }

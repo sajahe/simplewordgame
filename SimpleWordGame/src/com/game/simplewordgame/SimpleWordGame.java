@@ -55,7 +55,8 @@ public class SimpleWordGame extends Activity {
 	private Results result = new Results();
 	private int correct = 0;
 	private int questionNo = 0;
-
+	private int tense;
+	private SimpleApp app;
 	// private Verb verb = new Verb();
 	/** Called when the activity is first created. */
 	@Override
@@ -65,13 +66,16 @@ public class SimpleWordGame extends Activity {
 			
 			// this is the code that I am surrounding in the try/catch block
 			super.onCreate(savedInstanceState);
+			app =((SimpleApp)getApplicationContext());
 			setContentView(R.layout.main);
+			tense = getIntent().getExtras().getInt("tense");
 			
 			
 			
 			createJson();
-			createCam();
-			questions = jsonHandler.getQuestions(getIntent().getExtras().getInt("tense"), this);
+			app.createCamEvent("Start "+this.getClass().getSimpleName());
+			
+			questions = jsonHandler.getQuestions(tense, this);
 			// verb.testQuestion();
 			
 
@@ -259,6 +263,7 @@ public class SimpleWordGame extends Activity {
 		 */
 		// return teksti;*/
 	}
+	
 
 	/**
 	 * Shows the infinitive of the verb and the pronoun
@@ -386,4 +391,17 @@ public class SimpleWordGame extends Activity {
 		System.out.println(jsonCam);
 	}
 	
+	@Override
+	protected void onPause(){
+		app.createCamEvent("Pause "+this.getClass().getSimpleName());
+		super.onPause();
+		
+	}
+	@Override
+	protected void onResume(){
+		app.createCamEvent("Resume "+this.getClass().getSimpleName());
+		super.onResume();
+		
+		
+	}
 }
