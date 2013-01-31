@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import de.fit.caple.cam.domain.core.Relatedentity;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,11 +23,14 @@ import android.widget.TextView;
  */
 public class TenseSelect extends Activity {
 	private SimpleApp app;
+	private Relatedentity activity = new Relatedentity();
 	private static final String TAG = "Error";
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		activity.setName(this.getClass().getSimpleName());
+		activity.setId("06");
 		app =((SimpleApp)getApplicationContext());
-		app.createCamEvent("Start "+this.getClass().getSimpleName());
+		app.createCamEvent("Start", activity);
 		setContentView(R.layout.select_tense);
 		startButton();
 		helpButton();
@@ -41,6 +46,7 @@ public class TenseSelect extends Activity {
     	    
     	        	Intent intent1 = new Intent(v1.getContext(), SimpleWordGame.class);
     	        	intent1.putExtra("tense", 1);
+    	        	app.createCamEvent("Select present", activity);
     	        	startActivity(intent1);
     	        }
 
@@ -58,6 +64,7 @@ public class TenseSelect extends Activity {
     	    
     	        	Intent intent = new Intent(v.getContext(), SimpleWordGame.class);
     	        	intent.putExtra("tense", 2);
+    	        	app.createCamEvent("Select imperfect", activity);
     	        	startActivity(intent);
                     
     	        }
@@ -75,6 +82,7 @@ public class TenseSelect extends Activity {
     	    
     	        	Intent intent2 = new Intent(v2.getContext(), SimpleWordGame.class);
                     intent2.putExtra("tense", 3);
+                    app.createCamEvent("Select pc", activity);
     	        	startActivity(intent2);
     	        }
 
@@ -86,13 +94,13 @@ public class TenseSelect extends Activity {
 	}
 	@Override
 	protected void onPause(){
-		app.createCamEvent("Pause "+this.getClass().getSimpleName());
+		app.createCamEvent("Pause", activity);
 		super.onPause();
 		
 	}
 	@Override
 	protected void onResume(){
-		app.createCamEvent("Resume "+this.getClass().getSimpleName());
+		app.createCamEvent("Resume", activity);
 		super.onResume();
 	}
 }

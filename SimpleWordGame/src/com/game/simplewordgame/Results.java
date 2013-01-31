@@ -1,5 +1,6 @@
 package com.game.simplewordgame;
 
+import de.fit.caple.cam.domain.core.Relatedentity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,11 +12,14 @@ import android.widget.TextView;
 
 
 public class Results extends Activity{
+	private Relatedentity activity = new Relatedentity();
 	private SimpleApp app;
 		public void onCreate(Bundle savedInstanceState){
 			super.onCreate(savedInstanceState);
+			activity.setName(this.getClass().getSimpleName());
+			activity.setId("02");
 			app =((SimpleApp)getApplicationContext());
-			app.createCamEvent("Start "+this.getClass().getSimpleName());
+			app.createCamEvent("Start", activity);
 			setContentView(R.layout.result);
 			
 			Bundle extras = getIntent().getExtras();
@@ -28,8 +32,11 @@ public class Results extends Activity{
 			tv.setText("Perfect Score!");
 			
 			}
-			
-			app.createCamEvent("Score "+this.getClass().getSimpleName()+" "+number);
+			Relatedentity score = new Relatedentity();
+			score.setName("Score");
+			score.setId("03");
+			score.setMetadataReference(""+number);
+			app.createCamEvent("Score", activity,score);
 			menuButton();
 			newButton();
 		}
@@ -40,7 +47,7 @@ public class Results extends Activity{
 	    	    
 	    	        	//Intent intent1 = new Intent(v1.getContext(), StartMenu.class);
 	                    //startActivity(intent1);
-	    	    		app.createCamEvent("Select menu "+this.getClass().getSimpleName());
+	    	    		app.createCamEvent("Select menu",activity);
 	                    finish();
 	    	        }
 
@@ -57,7 +64,7 @@ public class Results extends Activity{
 	    	    public void onClick(View v) {
 	    	    
 	    	        	Intent intent = new Intent(v.getContext(), SimpleWordGame.class);
-	    	        	app.createCamEvent("Select new game "+this.getClass().getSimpleName());
+	    	        	app.createCamEvent("Select new game",activity);
 	    	        	startActivity(intent);
 	                    finish();
 	    	        }
@@ -70,13 +77,13 @@ public class Results extends Activity{
 	    }
 		@Override
 		protected void onPause(){
-			app.createCamEvent("Pause "+this.getClass().getSimpleName());
+			app.createCamEvent("Pause ",activity);
 			super.onPause();
 			
 		}
 		@Override
 		protected void onResume(){
-			app.createCamEvent("Resume "+this.getClass().getSimpleName());
+			app.createCamEvent("Resume ",activity);
 			super.onResume();
 			
 			

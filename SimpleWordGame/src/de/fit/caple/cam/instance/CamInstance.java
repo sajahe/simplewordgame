@@ -5,6 +5,9 @@ package de.fit.caple.cam.instance;
 import org.json.JSONException;
 import org.scribe.utils.URLUtils;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 /*import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;*/
 
@@ -97,7 +100,7 @@ public class CamInstance {
 	 * @return POJO of CamInstance
 	 */
 	public static CamInstance fromJson(String json) {
-		/*json = URLUtils.percentDecode(json);
+		json = URLUtils.percentDecode(json);
 		GsonBuilder gb = new GsonBuilder();
 		gb.serializeNulls();
 		gb.setDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -106,8 +109,8 @@ public class CamInstance {
 		if (camInstance != null) {
 			camInstance.addCircles();
 		}
-		return camInstance;*/
-		return null;
+		return camInstance;
+		
 	}
 	
 	// required for serialization

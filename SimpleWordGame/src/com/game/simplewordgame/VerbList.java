@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import de.fit.caple.cam.domain.core.Relatedentity;
+
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -21,6 +23,7 @@ import android.widget.ListView;
 public class VerbList extends ListActivity {
 	private static Context mContext;
 	private SimpleApp app;
+	private Relatedentity activity = new Relatedentity();
 	Verb verb = new Verb();
 	RawFileHandler rfh = new RawFileHandler();
 	CharSequence[] verbs;
@@ -31,8 +34,10 @@ public class VerbList extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		  super.onCreate(savedInstanceState);
 		  mContext = this;
+		  activity.setName(this.getClass().getSimpleName());
+		activity.setId("09");
 		  app =((SimpleApp)getApplicationContext());
-		  app.createCamEvent("Start "+this.getClass().getSimpleName());
+		  app.createCamEvent("Start ",activity);
 		setContentView(R.layout.verb_list_2);
 		// ListView lv = (ListView)findViewById(R.id.text);
 	
@@ -87,7 +92,7 @@ public class VerbList extends ListActivity {
 	        Object o = this.getListAdapter().getItem(position);
 	        CharSequence verb = o.toString();
 	        Intent intent1 = new Intent(v.getContext(), VerbConjugations.class);
-	        app.createCamEvent("Select "+verb);
+	        app.createCamEvent("Select "+verb,activity);
 	        intent1.putExtra("verb", verb);
             startActivity(intent1);
 	    }
@@ -126,13 +131,13 @@ private void verbArrayMaker() {
 	} 
 	@Override
 	protected void onPause(){
-		app.createCamEvent("Pause "+this.getClass().getSimpleName());
+		app.createCamEvent("Pause",activity);
 		super.onPause();
 		
 	}
 	@Override
 	protected void onResume(){
-		app.createCamEvent("Resume "+this.getClass().getSimpleName());
+		app.createCamEvent("Resume",activity);
 		super.onResume();
 		
 		

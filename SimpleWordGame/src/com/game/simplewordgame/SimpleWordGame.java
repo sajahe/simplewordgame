@@ -57,23 +57,29 @@ public class SimpleWordGame extends Activity {
 	private int questionNo = 0;
 	private int tense;
 	private SimpleApp app;
+	private Relatedentity activity = new Relatedentity();
+	private Relatedentity tenseEntity = new Relatedentity();
 	// private Verb verb = new Verb();
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-
+		
 		try {
 			
 			// this is the code that I am surrounding in the try/catch block
 			super.onCreate(savedInstanceState);
+			activity.setName(this.getClass().getSimpleName());
+			activity.setId("04");
 			app =((SimpleApp)getApplicationContext());
 			setContentView(R.layout.main);
 			tense = getIntent().getExtras().getInt("tense");
+			tenseEntity.setName("Tense");
 			
-			
+			tenseEntity.setId("05");
+			tenseEntity.setMetadataReference(""+tense);
 			
 			createJson();
-			app.createCamEvent("Start "+this.getClass().getSimpleName());
+			app.createCamEvent("Start", activity, tenseEntity);
 			
 			questions = jsonHandler.getQuestions(tense, this);
 			// verb.testQuestion();
@@ -393,13 +399,13 @@ public class SimpleWordGame extends Activity {
 	
 	@Override
 	protected void onPause(){
-		app.createCamEvent("Pause "+this.getClass().getSimpleName());
+		app.createCamEvent("Pause", activity);
 		super.onPause();
 		
 	}
 	@Override
 	protected void onResume(){
-		app.createCamEvent("Resume "+this.getClass().getSimpleName());
+		app.createCamEvent("Resume", activity);
 		super.onResume();
 		
 		

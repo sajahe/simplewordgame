@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.json.JSONException;
 
+import de.fit.caple.cam.domain.core.Relatedentity;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -25,6 +27,8 @@ import android.widget.TextView;
  *
  */
 public class VerbConjugations extends Activity{
+	private Relatedentity activity = new Relatedentity();
+	private Relatedentity verbEntity = new Relatedentity();
 	private JSONHandler jsonh;
 	private SimpleApp app;
 	private final String[] testVerbs= {"avoir","aller","boire","connaître","courir","devoir","dire","être","faire","lire","partir","pouvoir","prendre","savoir","venir","voir","vouloir"};
@@ -32,10 +36,14 @@ public class VerbConjugations extends Activity{
 	private String conjugatedVerb;
 	public void onCreate(Bundle savedInstanceState) {
 		  super.onCreate(savedInstanceState);
+		  activity.setName(this.getClass().getSimpleName());
+		  activity.setId("07");
+		  verbEntity.setName(this.getClass().getSimpleName());
+		  verbEntity.setId("08");
 		  setContentView(R.layout.verb_conjugations);
 		  conjugatedVerb= getIntent().getExtras().getString("verb");
 		  app =((SimpleApp)getApplicationContext());
-		  app.createCamEvent("Start "+this.getClass().getSimpleName()+" "+conjugatedVerb);
+		  app.createCamEvent("Start",activity,verbEntity);
 		  context = this;
 		  
 		  
@@ -148,13 +156,13 @@ public class VerbConjugations extends Activity{
 	}
 	@Override
 	protected void onPause(){
-		app.createCamEvent("Pause "+this.getClass().getSimpleName());
+		app.createCamEvent("Pause",activity,verbEntity);
 		super.onPause();
 		
 	}
 	@Override
 	protected void onResume(){
-		app.createCamEvent("Resume "+this.getClass().getSimpleName());
+		app.createCamEvent("Resume",activity,verbEntity);
 		super.onResume();
 		
 		

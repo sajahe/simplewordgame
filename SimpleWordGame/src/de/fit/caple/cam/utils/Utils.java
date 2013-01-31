@@ -43,13 +43,12 @@ public class Utils {
 	
 	public static String toJson(Object obj) throws JSONException {
 		GsonBuilder gb = new GsonBuilder();
-		
 		gb.serializeNulls();
 		gb.disableHtmlEscaping();
 		gb.setDateFormat("yyyy-MM-dd HH:mm:ss");
 		Gson gson = gb.setPrettyPrinting().create();
-		
-		return gson.toString();
+		String json = gson.toJson(obj);
+		return json;
 	}
 	public static int buildJSON(Field field){
 		field.getType();
