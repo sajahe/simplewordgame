@@ -9,6 +9,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.json.JSONObject;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+
 import de.fit.caple.cam.domain.core.Event;
 import de.fit.caple.cam.domain.core.Relatedentity;
 import de.fit.caple.cam.domain.core.Session;
@@ -42,7 +48,9 @@ public class SimpleApp extends Application {
 		user.setMetadataReference("userId");
 		user.setMimetype("User");
 		for (Relatedentity relatedentity : entities) {
+			if(event != null){
 			event.addRelatedentity(relatedentity, relatedentity.getName()+"Role");
+			}
 		}
 		
 		camInstances.add(camInstance);
@@ -52,11 +60,19 @@ public class SimpleApp extends Application {
 		System.out.println(jsonCam);*/
 	}
 	public void createCamFile() {
-		String FILENAME = "hello_world";
-		String json = camInstances.get(0).toJson();
-
+		StringBuilder json = new StringBuilder("["); 
+		
+		for (int i = 0; i < camInstances.size()-1; i++) {
+			json.append(camInstances.get(i).toJson()+",");
+			
+			
+		}
+		json.append(camInstances.get(camInstances.size()-1).toJson()+"]");
+		
+		
+		
 		System.out.println(json);
-		CamInstance newInst = CamInstance.fromJson(json);
+		
 		
 		boolean mExternalStorageAvailable = false;
 		boolean mExternalStorageWriteable = false;
@@ -81,7 +97,7 @@ public class SimpleApp extends Application {
 				+ File.separator + "cam.json");
 
 		try {
-			writeTextFile(textFile, json);
+			writeTextFile(textFile, json.toString());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -94,5 +110,6 @@ public class SimpleApp extends Application {
 		writer.write(text);
 		writer.close();
 	}
+	
 
 }

@@ -29,7 +29,7 @@
     android:gravity="right"/>
 </LinearLayout>
 <TextView  
-	android:text="present indicative tense"
+	android:text="@+id/tense"
 		android:textColor = "#000099"
 	android:gravity="center_horizontal"
     android:layout_width="fill_parent" 

@@ -68,6 +68,7 @@ public class SimpleWordGame extends Activity {
 			
 			// this is the code that I am surrounding in the try/catch block
 			super.onCreate(savedInstanceState);
+			
 			activity.setName(this.getClass().getSimpleName());
 			activity.setId("04");
 			app =((SimpleApp)getApplicationContext());
@@ -92,6 +93,10 @@ public class SimpleWordGame extends Activity {
 			    questionNo=savedInstanceState.getInt("questionNo");
 			   // verb.setForm(savedInstanceState.getString("form"));
 			}
+			
+			TextView tvTense = (TextView) findViewById(R.id.tense);
+			tvTense.setText("Tense"+tense);
+			
 			setQuestion();
 			setScore();
 			setQuestionNo();

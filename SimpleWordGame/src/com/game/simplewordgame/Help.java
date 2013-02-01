@@ -17,7 +17,7 @@ public class Help extends Activity {
 		activity.setId("01");
 		
 		app =((SimpleApp)getApplicationContext());
-		app.createCamEvent("Start ", activity, null);
+		app.createCamEvent("Start ", activity);
 		app.createCamFile();
 		setContentView(R.layout.help);
 		//Resources res = getResources();
@@ -27,13 +27,13 @@ public class Help extends Activity {
 	}
 	@Override
 	protected void onPause(){
-		app.createCamEvent("Pause", activity, null);
+		app.createCamEvent("Pause", activity);
 		super.onPause();
 		
 	}
 	@Override
 	protected void onResume(){
-		app.createCamEvent("Resume", activity, null);
+		app.createCamEvent("Resume", activity);
 		super.onResume();
 		
 		

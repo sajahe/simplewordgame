@@ -99,6 +99,43 @@ public class JSONHandler {
 		}
 		
 	}
+	public QuestionVerb parseRandomPCQuestion(Context context) throws JSONException{
+		int index =rnd.nextInt(array.length()-1);
+		JSONObject jObject = array.getJSONObject(index);
+		
+		JSONObject jObjectConjugations =jObject.getJSONObject("present indicative");
+		JSONObject jPCObject = jObject.getJSONObject("pc");
+		
+		String trunk;
+		String infinitive;
+		String impfTrunk;
+		
+		
+		int rndNumber = rnd.nextInt(5);
+		String pronoun = getRandomPronoun(rndNumber);
+		
+		
+		
+		if (!jObject.isNull("trunk")){
+			
+			trunk = jObject.getString("trunk");
+			infinitive =trunk.concat(jObject.getString("infinitive"));
+			}else{
+			infinitive = jObject.getString("infinitive");	
+			}
+		
+		if (jPCObject.getBoolean("aux")){
+			
+			
+			
+			return new QuestionVerb(infinitive, parseWantedConjugation("avoir", pronoun).concat(" "+jPCObject.getString("participe")), pronoun);
+		
+		}else{
+			
+			return new QuestionVerb(infinitive, parseWantedConjugation("être", pronoun).concat(" "+jPCObject.getString("participe")), pronoun);
+		}
+		
+	}
 	
 	
 	public VerbJSON parseVerbJSON(String s) throws JSONException {
@@ -132,7 +169,35 @@ public class JSONHandler {
 		return null;
 		
 	}
-
+public String parseWantedConjugation(String inf, String pronoun) throws JSONException {
+		
+		for (int i = 0; i < array.length(); i++) {
+			JSONObject jObject = array.getJSONObject(i);
+			String infinitive = null;
+			if (jObject.isNull("trunk")){
+				infinitive=jObject.getString("infinitive"); 
+			}else{
+				infinitive=jObject.getString("trunk").concat(jObject.getString("infinitive"));
+			}
+            if(infinitive != null && infinitive.equals(inf)){
+            	JSONObject jObjectConjugations =jObject.getJSONObject("present indicative");
+        		String trunk;
+        		String translation = jObject.getString("translation");
+        		
+        		if (!jObject.isNull("trunk")){
+        			
+        			trunk = jObject.getString("trunk");
+        			return jObjectConjugations.getString(pronoun);
+        		}else{
+        			return jObjectConjugations.getString(pronoun);
+        		}
+			}
+            
+			
+		}
+		return null;
+		
+	}
 
 	public VerbJSON parseVerbJSON(int index) throws JSONException {
 		JSONObject jObject = array.getJSONObject(index);
@@ -235,7 +300,7 @@ public void parseStringIntoJSON(String string) throws JSONException{
 			break;
 		case 3:
 			for (int i = 0; i < qv.length; i++) {
-				qv[i] = parseRandomQuestion();
+				qv[i] = parseRandomPCQuestion(context);
 			}	
 			break;
 
