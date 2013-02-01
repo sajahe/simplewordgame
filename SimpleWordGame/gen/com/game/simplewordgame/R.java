@@ -28,6 +28,7 @@ public final class R {
         public static final int Qno=0x7f080003;
         public static final int bg=0x7f080002;
         public static final int edittext=0x7f080008;
+        public static final int game_tense=0x7f080005;
         public static final int help=0x7f080015;
         public static final int help_text=0x7f080000;
         public static final int imperfect=0x7f080011;
@@ -43,7 +44,6 @@ public final class R {
         public static final int result=0x7f08000c;
         public static final int score=0x7f080004;
         public static final int start=0x7f080013;
-        public static final int tense=0x7f080005;
         public static final int test=0x7f08000b;
         public static final int text1=0x7f08001a;
         public static final int text2=0x7f08001b;

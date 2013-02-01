@@ -21,9 +21,12 @@ import de.fit.caple.cam.domain.core.Session;
 import de.fit.caple.cam.instance.CamInstance;
 import android.app.Application;
 import android.os.Environment;
+import android.provider.ContactsContract.Directory;
 
 public class SimpleApp extends Application {
 	private Session session = new Session();
+	//This is the global time stamp which is for cam filenames
+	private long time = Calendar.getInstance().getTimeInMillis();
 	private List<CamInstance> camInstances = new ArrayList<CamInstance>();
     
 	
@@ -91,10 +94,10 @@ public class SimpleApp extends Application {
 		    mExternalStorageAvailable = mExternalStorageWriteable = false;
 		}
 		if(mExternalStorageAvailable == mExternalStorageWriteable == true){
-		File externalDir = Environment.getExternalStorageDirectory();
-		
-		File textFile = new File(externalDir.getAbsolutePath()
-				+ File.separator + "cam.json");
+		File externalDir =new File( Environment.getExternalStorageDirectory().getAbsolutePath()+File.separator +"simplewordgame"+File.separator);
+		externalDir.mkdir();
+		String filename = "cam"+Calendar.getInstance().getTimeInMillis()+".json";
+		File textFile = new File(externalDir.getAbsolutePath()+File.separator+ filename);
 
 		try {
 			writeTextFile(textFile, json.toString());
@@ -110,6 +113,45 @@ public class SimpleApp extends Application {
 		writer.write(text);
 		writer.close();
 	}
+	public void createJsonFile(String json, String name) {
+		
+		
+		
+		System.out.println(json);
+		
+		
+		boolean mExternalStorageAvailable = false;
+		boolean mExternalStorageWriteable = false;
+		String state = Environment.getExternalStorageState();
+
+		if (Environment.MEDIA_MOUNTED.equals(state)) {
+		   
+		    mExternalStorageAvailable = mExternalStorageWriteable = true;
+		} else if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+		    // We can only read the media
+		    mExternalStorageAvailable = true;
+		    mExternalStorageWriteable = false;
+		} else {
+		    // Something else is wrong. It may be one of many other states, but all we need
+		    //  to know is we can neither read nor write
+		    mExternalStorageAvailable = mExternalStorageWriteable = false;
+		}
+		if(mExternalStorageAvailable == mExternalStorageWriteable == true){
+		File externalDir =new File( Environment.getExternalStorageDirectory().getAbsolutePath()+File.separator +"simplewordgame"+File.separator);
+		externalDir.mkdir();
+		String filename = name+time+".json";
+		File textFile = new File(externalDir.getAbsolutePath()+File.separator+ filename);
+
+		try {
+			writeTextFile(textFile, json.toString());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}}
+		// TODO Auto-generated method stub
+		
+	}
+	
 	
 
 }

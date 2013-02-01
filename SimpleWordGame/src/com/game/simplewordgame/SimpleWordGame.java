@@ -10,6 +10,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import de.fit.caple.cam.domain.core.Event;
 import de.fit.caple.cam.domain.core.Relatedentity;
 import de.fit.caple.cam.domain.core.Session;
@@ -94,8 +97,9 @@ public class SimpleWordGame extends Activity {
 			   // verb.setForm(savedInstanceState.getString("form"));
 			}
 			
-			TextView tvTense = (TextView) findViewById(R.id.tense);
-			tvTense.setText("Tense"+tense);
+			TextView tvTense = (TextView) findViewById(R.id.game_tense);
+			String[] tenses=getResources().getStringArray(R.array.tenses);
+			tvTense.setText(tenses[tense]);
 			
 			setQuestion();
 			setScore();
@@ -206,6 +210,7 @@ public class SimpleWordGame extends Activity {
 
 					Intent myIntent = new Intent(v.getContext(), Results.class);
 					myIntent.putExtra("i1", correct);
+					app.createJsonFile(questionArrayToString(), "questions");
 					startActivity(myIntent);
 					finish();
 				}else{
@@ -306,8 +311,10 @@ public class SimpleWordGame extends Activity {
 		} else {
 			View lo = findViewById(R.id.bg);
 			questions[questionNo].setCorrect(false);
+			questions[questionNo].setWrongAnswer(teksti);
 			lo.setBackgroundColor(0xFFFF0000);
-			Toast.makeText(SimpleWordGame.this, "Incorrect!",
+			
+			Toast.makeText(SimpleWordGame.this, "Incorrect! Correct answer was '"+questions[questionNo].getAnswer()+"'.",
 					Toast.LENGTH_SHORT).show();
 			next.setVisibility(Button.VISIBLE);
 		}
@@ -401,7 +408,22 @@ public class SimpleWordGame extends Activity {
 		String jsonCam = camInstance.toJson();
 		System.out.println(jsonCam);
 	}
-	
+	private String questionArrayToString(){
+		StringBuilder json = new StringBuilder("["); 
+		Gson g = new Gson();
+		for (int i = 0; i < questions.length-1; i++) {
+			GsonBuilder gb = new GsonBuilder();
+			
+			
+			json.append(g.toJson(questions[i])+",");
+			
+			
+		}
+		json.append(g.toJson(questions[questions.length-1])+"]");
+		System.out.println(json.toString());
+		return json.toString();
+		
+	}
 	@Override
 	protected void onPause(){
 		app.createCamEvent("Pause", activity);
@@ -415,4 +437,5 @@ public class SimpleWordGame extends Activity {
 		
 		
 	}
+	
 }

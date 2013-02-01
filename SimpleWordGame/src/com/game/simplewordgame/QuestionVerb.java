@@ -4,9 +4,26 @@ public class QuestionVerb {
 	  
 	private String question;
 	private String answer;
+	private String wrongAnswer;
+	public String getWrongAnswer() {
+		return wrongAnswer;
+	}
+	public void setWrongAnswer(String wrongAnswer) {
+		this.wrongAnswer = wrongAnswer;
+	}
+	public boolean isAnswered() {
+		return answered;
+	}
+	public void setAnswered(boolean answered) {
+		this.answered = answered;
+	}
+	public boolean isCorrect() {
+		return correct;
+	}
 	private String pronoun;
 	private boolean answered;
 	private boolean correct;
+	
 	
 	/**
 	 * This class is for asking questions in the verb quiz.

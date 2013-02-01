@@ -45,7 +45,7 @@ public class TenseSelect extends Activity {
     	    public void onClick(View v1) {
     	    
     	        	Intent intent1 = new Intent(v1.getContext(), SimpleWordGame.class);
-    	        	intent1.putExtra("tense", 1);
+    	        	intent1.putExtra("tense", 0);
     	        	app.createCamEvent("Select present", activity);
     	        	startActivity(intent1);
     	        }
@@ -63,7 +63,7 @@ public class TenseSelect extends Activity {
     	    public void onClick(View v) {
     	    
     	        	Intent intent = new Intent(v.getContext(), SimpleWordGame.class);
-    	        	intent.putExtra("tense", 2);
+    	        	intent.putExtra("tense", 1);
     	        	app.createCamEvent("Select imperfect", activity);
     	        	startActivity(intent);
                     
@@ -81,7 +81,7 @@ public class TenseSelect extends Activity {
     	    public void onClick(View v2) {
     	    
     	        	Intent intent2 = new Intent(v2.getContext(), SimpleWordGame.class);
-                    intent2.putExtra("tense", 3);
+                    intent2.putExtra("tense", 2);
                     app.createCamEvent("Select pc", activity);
     	        	startActivity(intent2);
     	        }

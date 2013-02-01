@@ -288,17 +288,17 @@ public void parseStringIntoJSON(String string) throws JSONException{
 	public QuestionVerb[] getQuestions(int tense, Context context) throws JSONException{
 		QuestionVerb[] qv = new QuestionVerb[10]; 
 		switch (tense) {
-		case 1:
+		case 0:
 			for (int i = 0; i < qv.length; i++) {
 				qv[i] = parseRandomQuestion();
 			}	
 			break;
-		case 2:
+		case 1:
 			for (int i = 0; i < qv.length; i++) {
 				qv[i] = parseRandomImperfectQuestion(context);
 			}	
 			break;
-		case 3:
+		case 2:
 			for (int i = 0; i < qv.length; i++) {
 				qv[i] = parseRandomPCQuestion(context);
 			}	

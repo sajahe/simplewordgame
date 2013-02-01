@@ -157,6 +157,9 @@ public class Verb extends Activity {
 		return s;
 		
 	}
+	/*
+	 * This static method retrieves wanted tense with given id 
+	 */
 	
 	
 }
