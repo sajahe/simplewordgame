@@ -9,7 +9,8 @@
 "vous":"avez",
 "ils":"ont"},
 "imperfect":{"trunk":"av"},
-"pc":{"aux":true, "participe":"eu"}
+"pc":{"aux":true, "participe":"eu"},
+"future":"aur"
 
 },{
 "infinitive": "aller",
@@ -22,7 +23,8 @@
 "vous":"allez",
 "ils":"vont"},
 "imperfect":{"trunk":"all"},
-"pc":{"aux":false, "participe":"allé"}
+"pc":{"aux":false, "participe":"allé"},
+"future":"ir"
 },{
 "infinitive": "boire",
 "translation":"to drink",
@@ -35,7 +37,8 @@
 "ils":"boivent"},
 "imperfect":{"trunk":"buv"}
 ,
-"pc":{"aux":true, "participe":"bu"}
+"pc":{"aux":true, "participe":"bu"},
+"future":"boir"
 },
 {
 "trunk": "conna",
@@ -49,7 +52,9 @@
 "vous":"issez",
 "ils":"issent"},
 "imperfect":{"trunk":"connaiss"},
-"pc":{"aux":true, "participe":"connu"}
+"pc":{"aux":true, "participe":"connu"},
+"future":"connaîtr"
+
 },
 {
 "trunk": "cour",
@@ -63,7 +68,8 @@
 "vous":"ez",
 "ils":"ent"},
 "imperfect":{},
-"pc":{"aux":true, "participe":"couru"}
+"pc":{"aux":true, "participe":"couru"},
+"future":"courr"
 },
 {
 "infinitive": "devoir",
@@ -76,7 +82,8 @@
 "vous":"devez",
 "ils":"doivent"},
 "imperfect":{"trunk":"dev"},
-"pc":{"aux":true, "participe":"dû"}
+"pc":{"aux":true, "participe":"dû"},
+"future":"devr"
 },
 {
 "trunk": "di",
@@ -90,7 +97,8 @@
 "vous":"tes",
 "ils":"sent"},
 "imperfect":{"trunk":"dis"},
-"pc":{"aux":true, "participe":"dit"}
+"pc":{"aux":true, "participe":"dit"},
+"future":"dir"
 },
 {
 "infinitive": "être",
@@ -104,6 +112,8 @@
 "ils":"sont"},
 "imperfect":{"trunk":"ét"},
 "pc":{"aux":true, "participe":"été"}
+,
+"future":"ser"
 },
 {
 "infinitive": "faire",
@@ -116,7 +126,8 @@
 "vous":"faites",
 "ils":"font"},
 "imperfect":{"trunk":"fais"},
-"pc":{"aux":true, "participe":"fait"}
+"pc":{"aux":true, "participe":"fait"},
+"future":"fer"
 },
 {
 "trunk": "li",
@@ -130,7 +141,8 @@
 "vous":"sez",
 "ils":"sent"},
 "imperfect":{"trunk":"lis"},
-"pc":{"aux":true, "participe":"lu"}
+"pc":{"aux":true, "participe":"lu"},
+"future":"lir"
 },
 {
 "trunk": "par",
@@ -144,7 +156,8 @@
 "vous":"tez",
 "ils":"tent"},
 "imperfect":{"trunk":"part"},
-"pc":{"aux":false, "participe":"parti"}
+"pc":{"aux":false, "participe":"parti"},
+"future":"partir"
 },
 {
 "infinitive": "pouvoir",
@@ -157,7 +170,8 @@
 "vous":"pouvez",
 "ils":"peuvent"},
 "imperfect":{"trunk":"pouv"},
-"pc":{"aux":true, "participe":"pu"}
+"pc":{"aux":true, "participe":"pu"},
+"future":"pourr"
 },
 {
 "trunk": "pren",
@@ -171,7 +185,8 @@
 "vous":"ez",
 "ils":"nent"},
 "imperfect":{"trunk":"pren"},
-"pc":{"aux":true, "participe":"pris"}
+"pc":{"aux":true, "participe":"pris"},
+"future":"prendr"
 },
 {
 "trunk": "sa",
@@ -185,7 +200,9 @@
 "vous":"vez",
 "ils":"vent"},
 "imperfect":{"trunk":"sav"},
-"pc":{"aux":true, "participe":"su"}
+"pc":{"aux":true, "participe":"su"},
+"future":"saur"
+
 },
 {
 "infinitive": "venir",
@@ -198,7 +215,9 @@
 "vous":"venez",
 "ils":"viennent"},
 "imperfect":{"trunk":"ven"},
-"pc":{"aux":true, "participe":"venú"}
+"pc":{"aux":true, "participe":"venú"},
+"future":"viendr"
+
 },
 {
 "trunk": "vo",
@@ -212,7 +231,8 @@
 "vous":"yez",
 "ils":"ient"},
 "imperfect":{"trunk":"voy"},
-"pc":{"aux":true, "participe":"vu"}
+"pc":{"aux":true, "participe":"vu"},
+"future":"verr"
 },
 {
 "infinitive": "vouloir",
@@ -225,5 +245,7 @@
 "vous":"voulez",
 "ils":"veulent"},
 "imperfect":{"trunk":"voul"},
-"pc":{"aux":true, "participe":"voulu"}
+"pc":{"aux":true, "participe":"voulu"},
+"future":"voudr"
+
 }]

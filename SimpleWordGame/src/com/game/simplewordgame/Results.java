@@ -47,7 +47,9 @@ public class Results extends Activity{
 	    	    
 	    	        	//Intent intent1 = new Intent(v1.getContext(), StartMenu.class);
 	                    //startActivity(intent1);
+	    	    		Intent intent = new Intent(v1.getContext(), StartMenu.class);
 	    	    		app.createCamEvent("Select menu",activity);
+	    	    		startActivity(intent);
 	                    finish();
 	    	        }
 

@@ -35,6 +35,8 @@ public class TenseSelect extends Activity {
 		startButton();
 		helpButton();
 		verbListButton();
+		futureButton();
+		conditionalButton();
 
 			
 		
@@ -83,6 +85,40 @@ public class TenseSelect extends Activity {
     	        	Intent intent2 = new Intent(v2.getContext(), SimpleWordGame.class);
                     intent2.putExtra("tense", 2);
                     app.createCamEvent("Select pc", activity);
+    	        	startActivity(intent2);
+    	        }
+
+    	    
+
+    	    
+    	});
+	
+	}
+	private void futureButton() {
+    	final Button vl = (Button) findViewById(R.id.future);
+    	vl.setOnClickListener(new OnClickListener() {
+    	    public void onClick(View v2) {
+    	    
+    	        	Intent intent2 = new Intent(v2.getContext(), SimpleWordGame.class);
+                    intent2.putExtra("tense", 3);
+                    app.createCamEvent("Select future", activity);
+    	        	startActivity(intent2);
+    	        }
+
+    	    
+
+    	    
+    	});
+	
+	}
+	private void conditionalButton() {
+    	final Button vl = (Button) findViewById(R.id.conditional);
+    	vl.setOnClickListener(new OnClickListener() {
+    	    public void onClick(View v2) {
+    	    
+    	        	Intent intent2 = new Intent(v2.getContext(), SimpleWordGame.class);
+                    intent2.putExtra("tense", 4);
+                    app.createCamEvent("Select conditional", activity);
     	        	startActivity(intent2);
     	        }
 

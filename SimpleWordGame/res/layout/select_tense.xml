@@ -35,6 +35,22 @@
     		android:layout_width="fill_parent"
     		android:layout_gravity ="center_vertical" 
     		android:text="Passé Composé">
+    		</Button>
+    		<Button 
+    		android:id="@+id/future" 
+
+    		android:layout_height="wrap_content" 
+    		android:layout_width="fill_parent"
+    		android:layout_gravity ="center_vertical" 
+    		android:text="Future">
+    		
+    		</Button>
+     <Button 
+    		android:id="@+id/conditional" 
+    		android:layout_height="wrap_content" 
+    		android:layout_width="fill_parent"
+    		android:layout_gravity ="center_vertical" 
+    		android:text="Conditional">
     		</Button>	 
     
 

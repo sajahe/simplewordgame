@@ -21,6 +21,14 @@
         <item >ions</item>
         <item >iez</item>
         <item >aient</item>
+    </string-array> 
+    <string-array name="future">
+        <item >ai</item>
+        <item >as</item>
+        <item >a</item>
+        <item >ons</item>
+        <item >ez</item>
+        <item >ont</item>
     </string-array>    
     <string-array name="tenses">
         <item >present</item>

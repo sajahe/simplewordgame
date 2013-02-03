@@ -71,7 +71,7 @@ public class JSONHandler {
 		String impfTrunk;
 		
 		String[] endings = context.getResources().getStringArray(R.array.impf);
-		int rndNumber = rnd.nextInt(5);
+		int rndNumber = rnd.nextInt(6);
 		String pronoun = getRandomPronoun(rndNumber);
 		String ending;
 		if(rndNumber > 1){
@@ -97,6 +97,74 @@ public class JSONHandler {
 			trunk = jObject.getString("trunk");
 			return new QuestionVerb(infinitive, trunk.concat(ending), pronoun);
 		}
+		
+	}
+	public QuestionVerb parseRandomFutureQuestion(Context context) throws JSONException{
+		int index =rnd.nextInt(array.length()-1);
+		JSONObject jObject = array.getJSONObject(index);
+		JSONObject jObjectConjugations =jObject.getJSONObject("present indicative");
+		
+		
+		String trunk;
+		String infinitive;
+		String impfTrunk = jObject.getString("future");
+		String[] endings = context.getResources().getStringArray(R.array.future);
+		int rndNumber = rnd.nextInt(6);
+		String pronoun = getRandomPronoun(rndNumber);
+		String ending;
+		
+		ending =endings[rndNumber];
+		
+		if (!jObject.isNull("trunk")){
+			
+			trunk = jObject.getString("trunk");
+			infinitive =trunk.concat(jObject.getString("infinitive"));
+			}else{
+			infinitive = jObject.getString("infinitive");	
+			}
+		
+		
+			
+			
+			
+		return new QuestionVerb(infinitive, impfTrunk.concat(ending), pronoun);
+		
+		
+	}
+	public QuestionVerb parseRandomConditionalQuestion(Context context) throws JSONException{
+		int index =rnd.nextInt(array.length()-1);
+		JSONObject jObject = array.getJSONObject(index);
+		JSONObject jObjectConjugations =jObject.getJSONObject("present indicative");
+		
+		
+		String trunk;
+		String infinitive;
+		String impfTrunk = jObject.getString("future");
+		String[] endings = context.getResources().getStringArray(R.array.impf);
+		int rndNumber = rnd.nextInt(6);
+		String pronoun = getRandomPronoun(rndNumber);
+		String ending;
+		
+		if(rndNumber > 1){
+			ending =endings[rndNumber-1];
+			}else{
+				ending =endings[0];
+			}
+		
+		if (!jObject.isNull("trunk")){
+			
+			trunk = jObject.getString("trunk");
+			infinitive =trunk.concat(jObject.getString("infinitive"));
+			}else{
+			infinitive = jObject.getString("infinitive");	
+			}
+		
+		
+			
+			
+			
+		return new QuestionVerb(infinitive, impfTrunk.concat(ending), pronoun);
+		
 		
 	}
 	public QuestionVerb parseRandomPCQuestion(Context context) throws JSONException{
@@ -303,6 +371,16 @@ public void parseStringIntoJSON(String string) throws JSONException{
 				qv[i] = parseRandomPCQuestion(context);
 			}	
 			break;
+		case 3:
+			for (int i = 0; i < qv.length; i++) {
+				qv[i] = parseRandomFutureQuestion(context);
+			}	
+			break;
+		case 4:
+			for (int i = 0; i < qv.length; i++) {
+				qv[i] = parseRandomConditionalQuestion(context);
+			}	
+			break;
 
 		default:
 			break;
@@ -339,7 +417,7 @@ case 5:
 	
 	private static String getRandomPronoun(){
 		
-		switch (rnd.nextInt(5)) {
+		switch (rnd.nextInt(6)) {
 		case 0:
 			
 			return "je";
