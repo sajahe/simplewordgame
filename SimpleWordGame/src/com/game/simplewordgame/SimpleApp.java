@@ -139,7 +139,7 @@ public class SimpleApp extends Application {
 		if(mExternalStorageAvailable == mExternalStorageWriteable == true){
 		File externalDir =new File( Environment.getExternalStorageDirectory().getAbsolutePath()+File.separator +"simplewordgame"+File.separator);
 		externalDir.mkdir();
-		String filename = name+time+".json";
+		String filename = name+".json";
 		File textFile = new File(externalDir.getAbsolutePath()+File.separator+ filename);
 
 		try {

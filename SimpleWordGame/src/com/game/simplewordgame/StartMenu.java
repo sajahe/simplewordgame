@@ -47,6 +47,7 @@ public class StartMenu extends Activity {
     	        	Intent intent1 = new Intent(v1.getContext(), Help.class);
     	        	app.createCamEvent("Select help", activity);
                     startActivity(intent1);
+                    finish();
     	        }
 
     	    
@@ -64,7 +65,7 @@ public class StartMenu extends Activity {
     	        	Intent intent = new Intent(v.getContext(), TenseSelect.class);
     	        	app.createCamEvent("Select new game", activity);
     	        	startActivity(intent);
-                    
+    	        	finish();
     	        }
 
     	    
@@ -81,6 +82,7 @@ public class StartMenu extends Activity {
     	        	Intent intent2 = new Intent(v2.getContext(), VerbList.class);
     	        	app.createCamEvent("Select list", activity);
                     startActivity(intent2);
+                    finish();
     	        }
 
     	    

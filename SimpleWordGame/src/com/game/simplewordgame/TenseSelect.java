@@ -50,6 +50,7 @@ public class TenseSelect extends Activity {
     	        	intent1.putExtra("tense", 0);
     	        	app.createCamEvent("Select present", activity);
     	        	startActivity(intent1);
+    	        	finish();
     	        }
 
     	    
@@ -68,6 +69,7 @@ public class TenseSelect extends Activity {
     	        	intent.putExtra("tense", 1);
     	        	app.createCamEvent("Select imperfect", activity);
     	        	startActivity(intent);
+    	        	finish();
                     
     	        }
 
@@ -86,6 +88,7 @@ public class TenseSelect extends Activity {
                     intent2.putExtra("tense", 2);
                     app.createCamEvent("Select pc", activity);
     	        	startActivity(intent2);
+    	        	finish();
     	        }
 
     	    
@@ -103,6 +106,7 @@ public class TenseSelect extends Activity {
                     intent2.putExtra("tense", 3);
                     app.createCamEvent("Select future", activity);
     	        	startActivity(intent2);
+    	        	finish();
     	        }
 
     	    
@@ -120,6 +124,7 @@ public class TenseSelect extends Activity {
                     intent2.putExtra("tense", 4);
                     app.createCamEvent("Select conditional", activity);
     	        	startActivity(intent2);
+    	        	finish();
     	        }
 
     	    

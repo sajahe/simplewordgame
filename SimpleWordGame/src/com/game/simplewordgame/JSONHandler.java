@@ -179,7 +179,7 @@ public class JSONHandler {
 		String impfTrunk;
 		
 		
-		int rndNumber = rnd.nextInt(5);
+		int rndNumber = rnd.nextInt(6);
 		String pronoun = getRandomPronoun(rndNumber);
 		
 		
@@ -195,12 +195,14 @@ public class JSONHandler {
 		if (jPCObject.getBoolean("aux")){
 			
 			
+				return new QuestionVerb(infinitive, parseWantedConjugation("avoir", pronoun).concat(" "+jPCObject.getString("participe")), pronoun);	
 			
-			return new QuestionVerb(infinitive, parseWantedConjugation("avoir", pronoun).concat(" "+jPCObject.getString("participe")), pronoun);
-		
 		}else{
-			
-			return new QuestionVerb(infinitive, parseWantedConjugation("être", pronoun).concat(" "+jPCObject.getString("participe")), pronoun);
+			if(rndNumber>2){
+			return new QuestionVerb(infinitive, parseWantedConjugation("être", pronoun).concat(" "+jPCObject.getString("participe")+"s"), pronoun);
+			}else{
+				return new QuestionVerb(infinitive, parseWantedConjugation("être", pronoun).concat(" "+jPCObject.getString("participe")), pronoun);
+			}
 		}
 		
 	}

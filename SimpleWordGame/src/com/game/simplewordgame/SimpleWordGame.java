@@ -25,6 +25,7 @@ import android.app.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.format.Time;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -210,7 +211,13 @@ public class SimpleWordGame extends Activity {
 
 					Intent myIntent = new Intent(v.getContext(), Results.class);
 					myIntent.putExtra("i1", correct);
-					app.createJsonFile(questionArrayToString(), "questions");
+					Relatedentity answersEntity = new Relatedentity();
+					answersEntity.setId("10");
+					answersEntity.setName("answers");
+					String timeID=String.valueOf(Calendar.getInstance().getTimeInMillis());
+					answersEntity.setMetadataId(timeID);
+					app.createCamEvent("Score", activity,tenseEntity,answersEntity );
+					app.createJsonFile(questionArrayToString(timeID), "questions"+timeID);
 					startActivity(myIntent);
 					finish();
 				}else{
@@ -408,8 +415,8 @@ public class SimpleWordGame extends Activity {
 		String jsonCam = camInstance.toJson();
 		System.out.println(jsonCam);
 	}
-	private String questionArrayToString(){
-		StringBuilder json = new StringBuilder("["); 
+	private String questionArrayToString(String id){
+		StringBuilder json = new StringBuilder("{\""+id+"\":["); 
 		Gson g = new Gson();
 		for (int i = 0; i < questions.length-1; i++) {
 			GsonBuilder gb = new GsonBuilder();
@@ -419,7 +426,7 @@ public class SimpleWordGame extends Activity {
 			
 			
 		}
-		json.append(g.toJson(questions[questions.length-1])+"]");
+		json.append(g.toJson(questions[questions.length-1])+"]}");
 		System.out.println(json.toString());
 		return json.toString();
 		
