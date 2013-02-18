@@ -20,8 +20,10 @@ import de.fit.caple.cam.domain.core.Relatedentity;
 import de.fit.caple.cam.domain.core.Session;
 import de.fit.caple.cam.instance.CamInstance;
 import android.app.Application;
+import android.content.Context;
 import android.os.Environment;
 import android.provider.ContactsContract.Directory;
+import android.telephony.TelephonyManager;
 
 public class SimpleApp extends Application {
 	private Session session = new Session();
@@ -33,6 +35,7 @@ public class SimpleApp extends Application {
 	public void createCamEvent(String name,Relatedentity...entities ){
 		
 		CamInstance camInstance = new CamInstance();
+		camInstance.setVersion(this.getString(R.string.json_version));
 		Event event = new Event();
 		event.setDatetime(Calendar.getInstance().getTime());
 		
@@ -50,8 +53,22 @@ public class SimpleApp extends Application {
 		
 		user.setMetadataReference("userId");
 		user.setMimetype("User");
+		Relatedentity location = new Relatedentity();
+		location.setId("location");
+		location.setMetadataReference(this.getResources().getConfiguration().locale.getISO3Country());
+		event.addRelatedentity(location,"location");
+		Relatedentity origin = new Relatedentity();
+		TelephonyManager tm = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+		origin.setMetadataReference(tm.getSimCountryIso());
+		origin.setId("origin");
+		event.addRelatedentity(origin,"origin");
+		Relatedentity language = new Relatedentity();
+		language.setMetadataReference(this.getResources().getConfiguration().locale.getDisplayLanguage());
+		language.setId("language");
+		event.addRelatedentity(language,"language");
 		for (Relatedentity relatedentity : entities) {
 			if(event != null){
+				
 			event.addRelatedentity(relatedentity, relatedentity.getName()+"Role");
 			}
 		}

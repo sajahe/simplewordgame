@@ -215,7 +215,7 @@
 "vous":"venez",
 "ils":"viennent"},
 "imperfect":{"trunk":"ven"},
-"pc":{"aux":true, "participe":"venú"},
+"pc":{"aux":true, "participe":"venu"},
 "future":"viendr"
 
 },

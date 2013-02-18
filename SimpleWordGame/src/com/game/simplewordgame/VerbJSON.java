@@ -2,7 +2,7 @@ package com.game.simplewordgame;
 
 public class VerbJSON {
 	
-
+    
 	private String infintive;
 	private String translation;
 	private String je;

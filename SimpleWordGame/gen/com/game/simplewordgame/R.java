@@ -81,5 +81,6 @@ public final class R {
         public static final int hello=0x7f050000;
         public static final int help=0x7f050002;
         public static final int incorrect=0x7f050005;
+        public static final int json_version=0x7f050006;
     }
 }

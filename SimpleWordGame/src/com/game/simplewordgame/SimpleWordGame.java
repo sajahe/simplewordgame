@@ -141,7 +141,7 @@ public class SimpleWordGame extends Activity {
 	 * Shows the number of the question
 	 */
 	private void setQuestionNo() {
-		String qno = "Question No." + questionNo + " ";
+		String qno = "Question No." + questionNo+1 + " ";
 		TextView tv = (TextView) findViewById(R.id.Qno);
 		tv.setText(qno);
 

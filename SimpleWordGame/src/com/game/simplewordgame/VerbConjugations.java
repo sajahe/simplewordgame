@@ -128,14 +128,16 @@ public class VerbConjugations extends Activity{
 		try {
 			//VerbJSON vjson = jsonh.parseVerbJSON(2);
 			
-			VerbJSON vjson = jsonh.parseVerbJSON(s);
+			VerbJSON vjson = jsonh.parseVerbJSON(s, 2,this);
 			
 			Log.i("En verbs", ("Verb: "+vjson.getInfintive()+" "+vjson.getJe()+" "+vjson.getTu()+" "+vjson.getIl()+" "+vjson.getNous()+" "+vjson.getVous()+" "+vjson.getIls()));
 			 TextView tv3 = (TextView) findViewById(R.id.textView3);
 			  tv3.setText(vjson.getInfintive());
 			TextView tv = (TextView) findViewById(R.id.textView1);
 			  tv.setText(vjson.getJe()+"\n"+vjson.getTu()+"\n"+vjson.getIl());
+			  
 			  TextView tv2 = (TextView) findViewById(R.id.textView4);
+			  
 			  tv2.setText(vjson.getNous()+"\n"+vjson.getVous()+"\n"+vjson.getIls());
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
