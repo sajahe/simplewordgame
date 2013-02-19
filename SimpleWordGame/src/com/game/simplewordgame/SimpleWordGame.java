@@ -141,11 +141,13 @@ public class SimpleWordGame extends Activity {
 	 * Shows the number of the question
 	 */
 	private void setQuestionNo() {
-		String qno = "Question No." + questionNo+1 + " ";
+		
+		String qno = "Question No." + (questionNo+1) + " ";
 		TextView tv = (TextView) findViewById(R.id.Qno);
 		tv.setText(qno);
 
 	}
+
 	/*
 	/**
 	 * Reads a row from a file
@@ -307,7 +309,7 @@ public class SimpleWordGame extends Activity {
 	 */
 	private void isItRight(String teksti) {
 		Button next = (Button) findViewById(R.id.next);
-		if (teksti.equals(questions[questionNo].getAnswer())) {
+		if (questions[questionNo].isCorrect(teksti, tense)) {
 			Toast.makeText(SimpleWordGame.this, "Correct!", Toast.LENGTH_SHORT)
 					.show();
 			next.setVisibility(Button.VISIBLE);

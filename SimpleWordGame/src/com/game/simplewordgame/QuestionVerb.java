@@ -51,6 +51,20 @@ public class QuestionVerb {
 	public void setCorrect(boolean b){
 		correct = b;
 	}
+	public boolean isCorrect(String teksti, int tense) {
+		if(tense == Tense.PASSE_COMPOSE && pronoun.equalsIgnoreCase("je") && answer.startsWith("suis")){
+			if(teksti.equals(answer) || teksti.equals(answer+"e")){
+				return true;
+			}
+			else{return false;}
+		}else{
+			if(teksti.equals(answer)){
+				return true;
+			}
+			else{return false;}
+		}
+		
+	}
 	
 
 }

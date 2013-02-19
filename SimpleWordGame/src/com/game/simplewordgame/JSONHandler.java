@@ -449,86 +449,173 @@ case 5:
 			return"";
 		}
 	}
-	public VerbJSON parseVerbJSON(String s, int tense, Context context) throws JSONException {
-		
+
+	public VerbJSON parseVerbJSON(String s, int tense, Context context)
+			throws JSONException {
+
 		for (int i = 0; i < array.length(); i++) {
 			JSONObject jObject = array.getJSONObject(i);
-			
+
 			String infinitive = null;
 			String translation = jObject.getString("translation");
-			
-			if (jObject.isNull("trunk")){
-				infinitive=jObject.getString("infinitive"); 
-			}else{
-				infinitive=jObject.getString("trunk").concat(jObject.getString("infinitive"));
+
+			if (jObject.isNull("trunk")) {
+				infinitive = jObject.getString("infinitive");
+			} else {
+				infinitive = jObject.getString("trunk").concat(
+						jObject.getString("infinitive"));
 			}
-			if(infinitive != null && infinitive.equals(s)){
-			switch (tense) {
-			case 0:
-				
-	            if(infinitive != null && infinitive.equals(s)){
-	            	JSONObject jObjectConjugations =jObject.getJSONObject("present indicative");
-	        		String trunk;
-	        		
-	        		
-	        		if (!jObject.isNull("trunk")){
-	        			
-	        			trunk = jObject.getString("trunk");
-	        			return new VerbJSON(trunk, jObject.getString("infinitive"),translation, jObjectConjugations.getString("je"), jObjectConjugations.getString("tu"), 
-	        					jObjectConjugations.getString("il"), jObjectConjugations.getString("nous"), jObjectConjugations.getString("vous"), jObjectConjugations.getString("ils"));
-	        		}else{
-	        			return new VerbJSON(jObject.getString("infinitive"),translation, jObjectConjugations.getString("je"), jObjectConjugations.getString("tu"), 
-	        					jObjectConjugations.getString("il"), jObjectConjugations.getString("nous"), jObjectConjugations.getString("vous"), jObjectConjugations.getString("ils"));
-	        		}
-	        		
-				}
-				break;
-//imperfect
-			case 1:
-	JSONObject jImperfect =jObject.getJSONObject("imperfect");
-	String[] endings = context.getResources().getStringArray(R.array.impf);
-	//if there is no tunk in imperfect
-	
-	String impfTrunk = null;
-	if (!jImperfect.isNull("trunk")){
-		
-		impfTrunk = jImperfect.getString("trunk");
-		
-		return new VerbJSON(infinitive, translation,impfTrunk.concat(endings[0]),impfTrunk.concat(endings[0]),impfTrunk.concat(endings[1]),impfTrunk.concat(endings[2]),impfTrunk.concat(endings[3]),impfTrunk.concat(endings[4]));
-		  
-	}else{
-		impfTrunk = jObject.getString("trunk");
-		return new VerbJSON(infinitive, translation,impfTrunk.concat(endings[0]),impfTrunk.concat(endings[0]),impfTrunk.concat(endings[1]),impfTrunk.concat(endings[2]),impfTrunk.concat(endings[3]),impfTrunk.concat(endings[4]));
-	}
-			case 2:
-				
-				
-				JSONObject jObjectConjugations =jObject.getJSONObject("present indicative");
-				JSONObject jPCObject = jObject.getJSONObject("pc");
-				
-				String trunk = s;
-				
-				
-				if (jPCObject.getBoolean("aux")){
+			if (infinitive != null && infinitive.equals(s)) {
+				switch (tense) {
+				case 0:
+
+					if (infinitive != null && infinitive.equals(s)) {
+						JSONObject jObjectConjugations = jObject
+								.getJSONObject("present indicative");
+						String trunk;
+
+						if (!jObject.isNull("trunk")) {
+
+							trunk = jObject.getString("trunk");
+							return new VerbJSON(trunk,
+									jObject.getString("infinitive"),
+									translation,
+									jObjectConjugations.getString("je"),
+									jObjectConjugations.getString("tu"),
+									jObjectConjugations.getString("il"),
+									jObjectConjugations.getString("nous"),
+									jObjectConjugations.getString("vous"),
+									jObjectConjugations.getString("ils"));
+						} else {
+							return new VerbJSON(
+									jObject.getString("infinitive"),
+									translation,
+									jObjectConjugations.getString("je"),
+									jObjectConjugations.getString("tu"),
+									jObjectConjugations.getString("il"),
+									jObjectConjugations.getString("nous"),
+									jObjectConjugations.getString("vous"),
+									jObjectConjugations.getString("ils"));
+						}
+
+					}
+					break;
+				// imperfect
+				case 1:
+					JSONObject jImperfect = jObject.getJSONObject("imperfect");
+					String[] endings = context.getResources().getStringArray(
+							R.array.impf);
+					// if there is no tunk in imperfect
+
+					String impfTrunk = null;
+					if (!jImperfect.isNull("trunk")) {
+
+						impfTrunk = jImperfect.getString("trunk");
+
+						return new VerbJSON(infinitive, translation,
+								impfTrunk.concat(endings[0]),
+								impfTrunk.concat(endings[0]),
+								impfTrunk.concat(endings[1]),
+								impfTrunk.concat(endings[2]),
+								impfTrunk.concat(endings[3]),
+								impfTrunk.concat(endings[4]));
+
+					} else {
+						impfTrunk = jObject.getString("trunk");
+						return new VerbJSON(infinitive, translation,
+								impfTrunk.concat(endings[0]),
+								impfTrunk.concat(endings[0]),
+								impfTrunk.concat(endings[1]),
+								impfTrunk.concat(endings[2]),
+								impfTrunk.concat(endings[3]),
+								impfTrunk.concat(endings[4]));
+					}
+					//Passé composé
+				case 2:
+
+					JSONObject jObjectConjugations = jObject
+							.getJSONObject("present indicative");
+					JSONObject jPCObject = jObject.getJSONObject("pc");
+
+					
+
+					if (jPCObject.getBoolean("aux")) {
+
+						return new VerbJSON(
+								infinitive,
+								translation,
+								parseWantedConjugation("avoir", "je").concat(
+										" " + jPCObject.getString("participe")),
+								parseWantedConjugation("avoir", "tu").concat(
+										" " + jPCObject.getString("participe")),
+								parseWantedConjugation("avoir", "il").concat(
+										" " + jPCObject.getString("participe")),
+								parseWantedConjugation("avoir", "nous").concat(
+										" " + jPCObject.getString("participe")),
+								parseWantedConjugation("avoir", "vous").concat(
+										" " + jPCObject.getString("participe")),
+								parseWantedConjugation("avoir", "ils").concat(
+										" " + jPCObject.getString("participe")));
+
+					} else {
+
+						return new VerbJSON(
+								infinitive,
+								translation,
+								parseWantedConjugation("être", "je").concat(
+										" " + jPCObject.getString("participe")),
+								parseWantedConjugation("être", "tu").concat(
+										" " + jPCObject.getString("participe")),
+								parseWantedConjugation("être", "il").concat(
+										" " + jPCObject.getString("participe")),
+								parseWantedConjugation("être", "nous").concat(
+										" " + jPCObject.getString("participe")
+												+ "s"), parseWantedConjugation(
+										"être", "vous").concat(
+										" " + jPCObject.getString("participe")
+												+ "s"), parseWantedConjugation(
+										"être", "ils").concat(
+										" " + jPCObject.getString("participe")
+												+ "s"));
+
+					}
+					// Future
+				case 3:
+
+					String futureTrunk = jObject.getString("future");
+					String[] endingsFuture = context.getResources()
+							.getStringArray(R.array.future);
 					
 					
-						return new VerbJSON(infinitive,translation, parseWantedConjugation("avoir", "je").concat(" "+jPCObject.getString("participe")), parseWantedConjugation("avoir", "tu").concat(" "+jPCObject.getString("participe")),parseWantedConjugation("avoir", "il").concat(" "+jPCObject.getString("participe")),parseWantedConjugation("avoir", "nous").concat(" "+jPCObject.getString("participe")),parseWantedConjugation("avoir", "vous").concat(" "+jPCObject.getString("participe")),parseWantedConjugation("avoir", "ils").concat(" "+jPCObject.getString("participe")));	
-					
-				}else{
-					
-					
-					return new VerbJSON(infinitive,translation,  parseWantedConjugation("être", "je").concat(" "+jPCObject.getString("participe")), parseWantedConjugation("être", "tu").concat(" "+jPCObject.getString("participe")),parseWantedConjugation("être", "il").concat(" "+jPCObject.getString("participe")),parseWantedConjugation("être", "nous").concat(" "+jPCObject.getString("participe")+"s"),parseWantedConjugation("être", "vous").concat(" "+jPCObject.getString("participe")+"s"),parseWantedConjugation("être", "ils").concat(" "+jPCObject.getString("participe")+"s"));
-					
-				}
-	
-	
-			
-			
-			
+
+					return new VerbJSON(infinitive, translation,
+							futureTrunk.concat(endingsFuture[0]),
+							futureTrunk.concat(endingsFuture[1]),
+							futureTrunk.concat(endingsFuture[2]),
+							futureTrunk.concat(endingsFuture[3]),
+							futureTrunk.concat(endingsFuture[4]),
+							futureTrunk.concat(endingsFuture[5]));
+
 				
-			
+			case 4:
+
+				String conditionalTrunk = jObject.getString("future");
+				String[] endingsImpf = context.getResources()
+						.getStringArray(R.array.impf);
+				
+				
+
+				return new VerbJSON(infinitive, translation,
+						conditionalTrunk.concat(endingsImpf[0]),
+						conditionalTrunk.concat(endingsImpf[0]),
+						conditionalTrunk.concat(endingsImpf[1]),
+						conditionalTrunk.concat(endingsImpf[2]),
+						conditionalTrunk.concat(endingsImpf[3]),
+						conditionalTrunk.concat(endingsImpf[4]));
+
+			}
+			}
 		}
-		}}
 		return null;
-		}
+	}
 }

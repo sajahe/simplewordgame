@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.json.JSONException;
 
@@ -12,7 +13,9 @@ import de.fit.caple.cam.domain.core.Relatedentity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.format.Time;
 import android.util.Log;
 import android.widget.AnalogClock;
@@ -128,17 +131,26 @@ public class VerbConjugations extends Activity{
 		try {
 			//VerbJSON vjson = jsonh.parseVerbJSON(2);
 			
-			VerbJSON vjson = jsonh.parseVerbJSON(s, 2,this);
+			for (int j = 0; j < 5; j++) {
+				
+			
+			VerbJSON vjson = jsonh.parseVerbJSON(s, j,this);
 			
 			Log.i("En verbs", ("Verb: "+vjson.getInfintive()+" "+vjson.getJe()+" "+vjson.getTu()+" "+vjson.getIl()+" "+vjson.getNous()+" "+vjson.getVous()+" "+vjson.getIls()));
-			 TextView tv3 = (TextView) findViewById(R.id.textView3);
+			TextView tv3 = (TextView) findViewById(R.id.textView3);
 			  tv3.setText(vjson.getInfintive());
 			TextView tv = (TextView) findViewById(R.id.textView1);
-			  tv.setText(vjson.getJe()+"\n"+vjson.getTu()+"\n"+vjson.getIl());
+			
+			 tv.append(Html.fromHtml("<br><b>"+Tense.getTense(j).toUpperCase(Locale.UK)+"</b><br>"));
+			 
+			 
+			  tv.append("je "+vjson.getJe()+"\ntu "+vjson.getTu()+"\nil "+vjson.getIl()+"\n");
 			  
 			  TextView tv2 = (TextView) findViewById(R.id.textView4);
 			  
-			  tv2.setText(vjson.getNous()+"\n"+vjson.getVous()+"\n"+vjson.getIls());
+			  tv2.append("\n\nnous "+vjson.getNous()+"\nvous "+vjson.getVous()+"\nils "+vjson.getIls()+"\n");
+			  
+			}
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
